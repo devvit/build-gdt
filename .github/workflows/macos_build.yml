@@ -19,6 +19,7 @@ jobs:
         run: |
           git clone --depth 1 --branch 3.5 --recursive https://github.com/godotengine/godot
           cd godot
+          echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
           git clone --depth 1 --branch 3.4 --recursive https://github.com/Geequlim/ECMAScript modules/ECMAScript
           scons platform=osx arch=x86_64 target=release_debug tools=yes
@@ -26,8 +27,9 @@ jobs:
           mkdir -p Godot.app/Contents/MacOS
           cp bin/godot* Godot.app/Contents/MacOS/Godot
           chmod +x Godot.app/Contents/MacOS/Godot
+          bsdtar -czf Godot.tgz Godot.app
       - name: "Upload artifact"
         uses: actions/upload-artifact@v3
         with:
-          name: macos
-          path: "godot/Godot.app"
+          name: macos-${{ env.version }}
+          path: "godot/Godot.tgz"
