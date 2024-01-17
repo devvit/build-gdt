@@ -22,7 +22,7 @@ jobs:
           echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           git clone --depth 1 --recursive https://github.com/felipenune/godot_dragonbones modules/godot_dragonbones
           git clone --depth 1 --branch 4.1 --recursive https://github.com/Geequlim/ECMAScript modules/ECMAScript
-          scons platform=macos arch=x86_64 target=release_debug tools=yes warnings=extra werror=yes module_text_server_fb_enabled=yes
+          scons platform=macos arch=x86_64 target=editor warnings=extra werror=yes module_text_server_fb_enabled=yes
           cp -r misc/dist/osx_tools.app ./Godot.app
           mkdir -p Godot.app/Contents/MacOS
           cp bin/godot* Godot.app/Contents/MacOS/Godot
