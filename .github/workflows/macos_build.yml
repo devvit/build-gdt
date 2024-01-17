@@ -22,7 +22,8 @@ jobs:
           echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
           git clone --depth 1 --branch 3.4 --recursive https://github.com/Geequlim/ECMAScript modules/ECMAScript
-          scons platform=osx arch=x86_64 target=release_debug tools=yes
+          git clone --depth 1 --branch 3.x --recursive https://github.com/perbone/luascript modules/luascript
+          scons platform=osx arch=x86_64 target=release_debug tools=yes module_luascript_enabled=yes
           cp -r misc/dist/osx_tools.app ./Godot.app
           mkdir -p Godot.app/Contents/MacOS
           cp bin/godot* Godot.app/Contents/MacOS/Godot
