@@ -55,7 +55,7 @@ jobs:
           git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
           git clone --depth 1 --branch 3.4 --recursive https://github.com/Geequlim/ECMAScript modules/ECMAScript
           git apply --directory modules/godot_dragonbones ../1.patch
-          scons platform=osx arch=x86_64 target=release_debug tools=yes spine_runtime_3_8=yes
+          scons platform=osx arch=x86_64 target=release_debug tools=yes spine_runtime_3_6=yes
           cp -r misc/dist/osx_tools.app ./Godot.app
           mkdir -p Godot.app/Contents/MacOS
           cp bin/godot* Godot.app/Contents/MacOS/Godot
