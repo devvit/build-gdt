@@ -51,6 +51,7 @@ jobs:
           git clone --depth 1 --branch 3.5 --recursive https://github.com/godotengine/godot
           cd godot
           echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+          git clone --depth 1 --branch spine3.8 --recursive https://github.com/rayxuln/spine-runtime-for-godot modules/spine_runtime
           git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
           git clone --depth 1 --branch 3.4 --recursive https://github.com/Geequlim/ECMAScript modules/ECMAScript
           git apply --directory modules/godot_dragonbones ../1.patch
