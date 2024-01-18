@@ -1,0 +1,26 @@
+diff --git a/gddragonbones.cpp b/gddragonbones.cpp
+index a995f6d..2d2ea71 100644
+--- a/gddragonbones.cpp
++++ b/gddragonbones.cpp
+@@ -1031,7 +1031,7 @@ void GDDragonBones::_bind_methods()
+ 	ADD_PROPERTY(PropertyInfo(REAL_VARIANT, "playback/progress", PROPERTY_HINT_RANGE, "-100,100,0.010"), _SCS("seek"), _SCS("get_progress"));
+     ADD_PROPERTY(PropertyInfo(Variant::BOOL, "playback/play"), _SCS("play"), _SCS("is_playing"));
+ 
+-    ADD_PROPERTY(PropertyInfo(Variant::BOOL, "childs use this material"), _SCS("set_inherit_material"), _SCS("is_material_inherited"));
++    ADD_PROPERTY(PropertyInfo(Variant::BOOL, "childs_use_this_material"), _SCS("set_inherit_material"), _SCS("is_material_inherited"));
+ 
+     ADD_SIGNAL(MethodInfo("dragon_anim_start", PropertyInfo(Variant::STRING, "anim")));
+     ADD_SIGNAL(MethodInfo("dragon_anim_complete", PropertyInfo(Variant::STRING, "anim")));
+diff --git a/register_types.cpp b/register_types.cpp
+index 87f1be3..1ab9b07 100644
+--- a/register_types.cpp
++++ b/register_types.cpp
+@@ -108,6 +108,8 @@ void register_godot_dragonbones_types()
+ 	REG_VIRTUAL_CLASS_BIND_GODO<GDArmatureDisplay>();
+ 	REG_VIRTUAL_CLASS_BIND_GODO<GDSlot>();
+ 	REG_VIRTUAL_CLASS_BIND_GODO<GDBone2D>();
++	REG_VIRTUAL_CLASS_BIND_GODO<GDDisplay>();
++	REG_VIRTUAL_CLASS_BIND_GODO<GDOwnerNode>();
+     REG_CLASS_BIND_GODO<GDDragonBones::GDDragonBonesResource>();
+ 
+ 	resource_loader_GDDragonBones.instance();
