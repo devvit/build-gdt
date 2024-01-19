@@ -24,8 +24,6 @@ jobs:
           git clone --depth 1 --recursive https://github.com/felipenune/godot_dragonbones modules/godot_dragonbones
           git clone --depth 1 --recursive https://github.com/Geequlim/ECMAScript modules/javascript
           git clone --depth 1 --recursive https://github.com/WeaselGames/godot_luaAPI modules/luaAPI 
-          git clone --depth 1 --branch 4.1 --recursive https://github.com/EsotericSoftware/spine-runtimes
-          cp -r spine-runtimes/spine-godot/spine_godot modules/spine_godot
           scons platform=macos arch=x86_64 target=editor
           cp -r misc/dist/macos_tools.app ./Godot.app
           mkdir -p Godot.app/Contents/MacOS
