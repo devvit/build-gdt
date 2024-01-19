@@ -1,0 +1,31 @@
+name: Build web export 3
+
+on:
+  push:
+  # schedule:
+  #   - cron: '0 0 * * 0'
+
+jobs:
+  macos_build:
+    name: macOS Build
+    runs-on: "macos-latest"
+    steps:
+      - name: "checkout repo"
+        uses: actions/checkout@v4
+      - name: Install Scons
+        run: python3 -m pip install -U scons
+      - name: "Build"
+        shell: bash
+        run: |
+          git clone --depth 1 --branch 3.5 --recursive https://github.com/godotengine/godot
+          cd godot
+          echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+          git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
+          git clone --depth 1 --branch 3.4 --recursive https://github.com/Geequlim/ECMAScript modules/ECMAScript
+          git apply --directory modules/godot_dragonbones ../1.patch
+          scons platform=javascript target=release tools=no threads_enabled=no
+      - name: "Upload artifact"
+        uses: actions/upload-artifact@v3
+        with:
+          name: macos-${{ env.version }}
+          path: "godot/Godot.tgz"

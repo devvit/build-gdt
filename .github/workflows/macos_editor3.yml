@@ -1,4 +1,4 @@
-name: Build
+name: Build macos editor 3
 
 on:
   push:
