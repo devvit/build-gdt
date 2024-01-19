@@ -12,11 +12,10 @@ jobs:
     steps:
       - name: "checkout repo"
         uses: actions/checkout@v4
-      - name: Install Scons
-        run: python3 -m pip install -U scons
       - name: "Build"
         shell: bash
         run: |
+          brew install emscripten scons
           git clone --depth 1 --branch 4.1 --recursive https://github.com/godotengine/godot
           cd godot
           echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
