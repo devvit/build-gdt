@@ -42,11 +42,10 @@ jobs:
     steps:
       - name: "checkout repo"
         uses: actions/checkout@v4
-      - name: Install Scons
-        run: python3 -m pip install -U scons
       - name: "Build"
         shell: bash
         run: |
+          brew install emscripten scons
           git clone --depth 1 --branch 3.5 --recursive https://github.com/godotengine/godot
           cd godot
           echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
@@ -56,9 +55,10 @@ jobs:
           scons platform=osx arch=x86_64 target=release_debug tools=yes
           cp -r misc/dist/osx_tools.app ./Godot.app
           mkdir -p Godot.app/Contents/MacOS
-          cp bin/godot* Godot.app/Contents/MacOS/Godot
+          cp bin/godot.osx* Godot.app/Contents/MacOS/Godot
           chmod +x Godot.app/Contents/MacOS/Godot
-          bsdtar -czf Godot.tgz Godot.app
+          scons platform=javascript tools=no target=release threads_enabled=no
+          bsdtar -czf Godot.tgz Godot.app bin/godot.javascript*
       - name: "Upload artifact"
         uses: actions/upload-artifact@v3
         with:
