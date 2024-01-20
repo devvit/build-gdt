@@ -15,6 +15,7 @@ jobs:
       - name: "Build"
         shell: bash
         run: |
+          brew update
           brew install emscripten scons
           git clone --depth 1 --branch 3.5 --recursive https://github.com/godotengine/godot
           cd godot
