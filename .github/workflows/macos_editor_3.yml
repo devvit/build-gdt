@@ -6,35 +6,6 @@ on:
   #   - cron: '0 0 * * 0'
 
 jobs:
-  # macos_build:
-  #   name: macOS Build
-  #   runs-on: "macos-latest"
-  #   steps:
-  #     - name: "checkout repo"
-  #       uses: actions/checkout@v4
-  #     - name: "Build"
-  #       shell: bash
-  #       run: |
-  #         brew install emscripten scons
-  #         git clone --depth 1 --branch 4.1 --recursive https://github.com/godotengine/godot
-  #         cd godot
-  #         echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-  #         sh misc/scripts/install_vulkan_sdk_macos.sh
-  #         git clone --depth 1 --recursive https://github.com/felipenune/godot_dragonbones modules/godot_dragonbones
-  #         git clone --depth 1 --recursive https://github.com/Geequlim/ECMAScript modules/javascript
-  #         scons platform=macos arch=x86_64 target=editor
-  #         cp -r misc/dist/macos_tools.app ./Godot.app
-  #         mkdir -p Godot.app/Contents/MacOS
-  #         cp bin/godot.macos* Godot.app/Contents/MacOS/Godot
-  #         chmod +x Godot.app/Contents/MacOS/Godot
-  #         codesign --force --timestamp --options=runtime --entitlements misc/dist/macos/editor.entitlements -s - Godot.app
-  #         scons platform=web target=template_release
-  #         bsdtar -czf Godot.tgz Godot.app bin/godot.web*
-  #     - name: "Upload artifact"
-  #       uses: actions/upload-artifact@v3
-  #       with:
-  #         name: macos-${{ env.version }}
-  #         path: "godot/Godot.tgz"
   macos_build:
     name: macOS Build
     runs-on: "macos-latest"
@@ -59,6 +30,7 @@ jobs:
           cp bin/godot.osx* Godot.app/Contents/MacOS/Godot
           chmod +x Godot.app/Contents/MacOS/Godot
           scons platform=javascript tools=no target=release LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
+          scons platform=javascript tools=no target=release_debug LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
           bsdtar -czf Godot.tgz Godot.app bin/godot.javascript*
       - name: "Upload artifact"
         uses: actions/upload-artifact@v3
