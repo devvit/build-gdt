@@ -1,9 +1,11 @@
 name: Build_macos_editor_4
 
 on:
-  # push:
-  schedule:
-    - cron: '0 0 * * 0'
+  push:
+    paths:
+      - '**.js'
+  # schedule:
+  #   - cron: '0 0 * * 0'
 
 jobs:
   macos_build:
@@ -16,7 +18,7 @@ jobs:
         shell: bash
         run: |
           brew update
-          brew install emscripten scons
+          brew install emscripten scons yasm
           git clone --depth 1 --branch 4.1 --recursive https://github.com/godotengine/godot
           cd godot
           echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
