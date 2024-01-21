@@ -32,9 +32,9 @@ jobs:
           git apply --directory modules/godot_dragonbones ../1.patch
           # scons platform=osx arch=x86_64 target=release_debug tools=yes
           cp -r misc/dist/osx_tools.app ./Godot.app
-          mkdir -p Godot.app/Contents/MacOS
+          # mkdir -p Godot.app/Contents/MacOS
           # cp bin/godot.osx* Godot.app/Contents/MacOS/Godot
-          chmod +x Godot.app/Contents/MacOS/Godot
+          # chmod +x Godot.app/Contents/MacOS/Godot
           # scons platform=javascript tools=no target=release LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
           # https://github.com/Geequlim/ECMAScript/issues/57
           # scons platform=javascript tools=no target=release_debug LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
