@@ -16,8 +16,6 @@ jobs:
         uses: actions/checkout@v4
       - name: "Build"
         shell: bash
-        env:
-          ANDROID_SDK_ROOT: /Users/runner/Library/Android/sdk
         run: |
           brew update
           brew install emscripten scons yasm
@@ -29,17 +27,15 @@ jobs:
           git apply ./modules/godot_dragonbones/build/android-no-rtti-patch.patch
           git apply ./modules/godot_dragonbones/build/js-no-rtti-patch.patch
           git apply --directory modules/godot_dragonbones ../1.patch
-          # scons platform=osx arch=x86_64 target=release_debug tools=yes
+          scons platform=osx arch=x86_64 target=release_debug tools=yes
           cp -r misc/dist/osx_tools.app ./Godot.app
-          # mkdir -p Godot.app/Contents/MacOS
-          # cp bin/godot.osx* Godot.app/Contents/MacOS/Godot
-          # chmod +x Godot.app/Contents/MacOS/Godot
-          # scons platform=javascript tools=no target=release LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
-          # https://github.com/Geequlim/ECMAScript/issues/57
-          # scons platform=javascript tools=no target=release_debug LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
-          JAVA_HOME=$JAVA_HOME_17_X64 scons platform=android target=release android_arch=armv7
-          JAVA_HOME=$JAVA_HOME_17_X64 bash ../build.sh
-          touch bin/godot.javascript
+          mkdir -p Godot.app/Contents/MacOS
+          cp bin/godot.osx* Godot.app/Contents/MacOS/Godot
+          chmod +x Godot.app/Contents/MacOS/Godot
+          scons platform=javascript tools=no target=release LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
+          https://github.com/Geequlim/ECMAScript/issues/57
+          scons platform=javascript tools=no target=release_debug LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
+          bash ../build.sh
           bsdtar -czf Godot.tgz Godot.app bin/godot.javascript* bin/android*apk
       - name: "Upload artifact"
         uses: actions/upload-artifact@v3
