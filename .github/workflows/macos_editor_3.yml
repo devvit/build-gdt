@@ -33,7 +33,7 @@ jobs:
           cp bin/godot.osx* Godot.app/Contents/MacOS/Godot
           chmod +x Godot.app/Contents/MacOS/Godot
           scons platform=javascript tools=no target=release LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
-          https://github.com/Geequlim/ECMAScript/issues/57
+          # https://github.com/Geequlim/ECMAScript/issues/57
           scons platform=javascript tools=no target=release_debug LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
           bash ../build.sh
           bsdtar -czf Godot.tgz Godot.app bin/godot.javascript* bin/android*apk
