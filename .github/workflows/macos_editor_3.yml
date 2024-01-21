@@ -38,8 +38,8 @@ jobs:
           # scons platform=javascript tools=no target=release LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
           # https://github.com/Geequlim/ECMAScript/issues/57
           # scons platform=javascript tools=no target=release_debug LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
-          yes | $ANDROID_SDK_ROOT/tools/bin/sdkmanager --licenses
-          $ANDROID_SDK_ROOT/tools/bin/sdkmanager --sdk_root=$ANDROID_SDK_ROOT "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404"
+          yes | $ANDROID_SDK_ROOT/cmdline-tools/tools/bin/sdkmanager --licenses
+          $ANDROID_SDK_ROOT/cmdline-tools/tools/bin/sdkmanager --sdk_root=$ANDROID_SDK_ROOT "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404"
           scons platform=android target=release android_arch=armv7
           bash ../build.sh
           touch bin/godot.javascript
