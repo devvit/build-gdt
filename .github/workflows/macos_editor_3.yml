@@ -20,8 +20,8 @@ jobs:
           ANDROID_SDK_ROOT: /usr/local/share/android-commandlinetools
         run: |
           brew update
-          brew install emscripten scons yasm openjdk@17
-          brew install --cask android-commandlinetools
+          brew install emscripten scons yasm
+          brew install --cask temurin android-commandlinetools
           git clone --depth 1 --branch 3.5 --recursive https://github.com/godotengine/godot
           cd godot
           echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
