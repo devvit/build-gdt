@@ -9,6 +9,9 @@ openssl rand -hex 32 > godot.gdkey
 export SCRIPT_AES256_ENCRYPTION_KEY="your_generated_key"
 keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 -deststoretype pkcs12
 keytool -v -genkey -keystore mygame.keystore -alias mygame -keyalg RSA -validity 10000
+
+keytool -genkey -v -keystore mygame.keystore -alias mygame -keyalg RSA -keysize 2048 -validity 10000
+~/Library/Android/sdk/build-tools/33.0.2/apksigner sign --ks mygame.keystore --ks-key-alias mygame mygame.apk
 ```
 
 ```javascript
