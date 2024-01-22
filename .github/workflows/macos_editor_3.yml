@@ -2,8 +2,8 @@ name: Build_macos_editor_3
 
 on:
   push:
-    # paths:
-    #   - '**.js'
+    paths:
+      - '**.js'
   # schedule:
   #   - cron: '0 0 * * 0'
 
@@ -35,7 +35,7 @@ jobs:
           scons platform=javascript tools=no target=release LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
           # https://github.com/Geequlim/ECMAScript/issues/57
           # scons platform=javascript tools=no target=release_debug LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
-          bash ../build.sh
+          bash ../build_3.sh
           bsdtar -czf Godot.tgz Godot.app bin/godot.javascript* bin/android*apk
       - name: "Upload artifact"
         uses: actions/upload-artifact@v3
