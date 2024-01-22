@@ -6,6 +6,7 @@ test
 ibtool --compile ConsoleWindow.nib ConsoleWindow.xib
 lipo -create bin/godot.macos.editor.x86_64 bin/godot.macos.editor.arm64 -output bin/godot.macos.editor.universal
 openssl rand -hex 32 > godot.gdkey
+export SCRIPT_AES256_ENCRYPTION_KEY="your_generated_key"
 keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 -deststoretype pkcs12
 keytool -v -genkey -keystore mygame.keystore -alias mygame -keyalg RSA -validity 10000
 ```
