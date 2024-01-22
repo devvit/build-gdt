@@ -2,8 +2,8 @@ name: Build_macos_editor_4
 
 on:
   push:
-    paths:
-      - '**.js'
+    # paths:
+    #   - '**.js'
   # schedule:
   #   - cron: '0 0 * * 0'
 
@@ -24,7 +24,7 @@ jobs:
           echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           sh misc/scripts/install_vulkan_sdk_macos.sh
           git clone --depth 1 --recursive https://github.com/felipenune/godot_dragonbones modules/godot_dragonbones
-          git clone --depth 1 --recursive --branch fix-generating-declaration-file https://github.com/Geequlim/ECMAScript modules/javascript
+          git clone --depth 1 --recursive https://github.com/Geequlim/ECMAScript modules/javascript
           scons platform=macos arch=x86_64 target=editor
           cp -r misc/dist/macos_tools.app ./Godot.app
           mkdir -p Godot.app/Contents/MacOS
