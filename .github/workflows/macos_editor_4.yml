@@ -2,8 +2,8 @@ name: Build_macos_editor_4
 
 on:
   push:
-    paths:
-      - '**.js'
+    # paths:
+    #   - '**.js'
   # schedule:
   #   - cron: '0 0 * * 0'
 
@@ -19,7 +19,7 @@ jobs:
         run: |
           brew update
           brew install emscripten scons yasm
-          git clone --depth 1 --branch 4.1 --recursive https://github.com/godotengine/godot
+          git clone --depth 1 --branch 4.2 --recursive https://github.com/godotengine/godot
           cd godot
           echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           sh misc/scripts/install_vulkan_sdk_macos.sh
