@@ -2,8 +2,8 @@ name: Build_macos_editor_3
 
 on:
   push:
-    paths:
-      - '**.js'
+    # paths:
+    #   - '**.js'
   # schedule:
   #   - cron: '0 0 * * 0'
 
@@ -24,11 +24,13 @@ jobs:
           echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
           git clone --depth 1 --branch 3.4 --recursive https://github.com/Geequlim/ECMAScript modules/ECMAScript
-          git apply ./modules/godot_dragonbones/build/android-no-rtti-patch.patch
-          git apply ./modules/godot_dragonbones/build/js-no-rtti-patch.patch
+          git clone --depth 1 https://github.com/GodotECS/godex modules/godex
+          git apply modules/godex/patches/add_custom_iterator.patch --reject --ignore-space-change --ignore-whitespace
+          git apply modules/godot_dragonbones/build/android-no-rtti-patch.patch
+          git apply modules/godot_dragonbones/build/js-no-rtti-patch.patch
           git apply --directory modules/godot_dragonbones ../1.patch
           scons platform=osx arch=x86_64 target=release_debug tools=yes
-          cp -r misc/dist/osx_tools.app ./Godot.app
+          cp -r misc/dist/osx_tools.app Godot.app
           mkdir -p Godot.app/Contents/MacOS
           cp bin/godot.osx* Godot.app/Contents/MacOS/Godot
           chmod +x Godot.app/Contents/MacOS/Godot
