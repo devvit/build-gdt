@@ -2,8 +2,8 @@ name: Build_macos_editor_4
 
 on:
   push:
-    # paths:
-    #   - '**.js'
+    paths:
+      - '**.js'
   # schedule:
   #   - cron: '0 0 * * 0'
 
@@ -34,7 +34,7 @@ jobs:
           scons platform=web target=template_release
           scons platform=web target=template_debug
           bash ../build_4.sh
-          bsdtar -czf Godot.tgz Godot.app bin/godot.web* bin/android*apk
+          bsdtar -czf Godot.tgz Godot.app bin/*.zip bin/*.apk
       - name: "Upload artifact"
         uses: actions/upload-artifact@v3
         with:

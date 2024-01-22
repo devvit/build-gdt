@@ -36,7 +36,7 @@ jobs:
           # https://github.com/Geequlim/ECMAScript/issues/57
           # scons platform=javascript tools=no target=release_debug LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
           bash ../build_3.sh
-          bsdtar -czf Godot.tgz Godot.app bin/godot.javascript* bin/android*apk
+          bsdtar -czf Godot.tgz Godot.app bin/*.zip bin/*.apk
       - name: "Upload artifact"
         uses: actions/upload-artifact@v3
         with:
