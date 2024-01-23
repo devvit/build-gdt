@@ -28,6 +28,7 @@ jobs:
           git apply modules/godot_dragonbones/build/android-no-rtti-patch.patch
           git apply modules/godot_dragonbones/build/js-no-rtti-patch.patch
           git apply --directory modules/godot_dragonbones ../1.patch
+          git apply --directory modules/godot_dragonbones ../2.patch
           scons platform=osx arch=x86_64 target=release_debug tools=yes
           cp -r misc/dist/osx_tools.app Godot.app
           mkdir -p Godot.app/Contents/MacOS
