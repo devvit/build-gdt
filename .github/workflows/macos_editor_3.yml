@@ -2,8 +2,8 @@ name: Build_macos_editor_3
 
 on:
   push:
-    paths:
-      - '**.js'
+    # paths:
+    #   - '**.js'
   # schedule:
   #   - cron: '0 0 * * 0'
 
@@ -24,7 +24,8 @@ jobs:
           echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
           git clone --depth 1 --branch 3.4 --recursive https://github.com/Geequlim/ECMAScript modules/ECMAScript
-          git clone --depth 1 --branch godot-3.x --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
+          # git clone --depth 1 --branch godot-3.x --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
+          git clone --depth 1 --recursive https://github.com/rayxuln/spine-runtime-for-godot modules/spine_runtime
           git apply modules/godot_dragonbones/build/android-no-rtti-patch.patch
           git apply modules/godot_dragonbones/build/js-no-rtti-patch.patch
           git apply --directory modules/godot_dragonbones ../1.patch
