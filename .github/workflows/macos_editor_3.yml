@@ -25,7 +25,7 @@ jobs:
           git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
           git clone --depth 1 --branch 3.4 --recursive https://github.com/Geequlim/ECMAScript modules/ECMAScript
           # git clone --depth 1 --branch godot-3.x --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
-          git clone --depth 1 --recursive https://github.com/rayxuln/spine-runtime-for-godot modules/spine_runtime
+          git clone --depth 1 --branch spine3.8 --recursive https://github.com/waochi/spine-runtime-for-godot modules/spine_runtime
           git apply modules/godot_dragonbones/build/android-no-rtti-patch.patch
           git apply modules/godot_dragonbones/build/js-no-rtti-patch.patch
           git apply --directory modules/godot_dragonbones ../1.patch
