@@ -23,7 +23,7 @@ jobs:
           brew install --force --overwrite python@3.11
           brew link --overwrite python@3.11
           brew install emscripten scons yasm
-          git clone --depth 1 --branch 3.x --recursive https://github.com/godotengine/godot
+          git clone --depth 1 --branch 3.5 --recursive https://github.com/godotengine/godot
           cd godot
           echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           curl -fsSL -JO https://github.com/mauville-technologies/godot_dragonbones/archive/a1387eea95c68d988e4868b2affc6a48cf1506b2.zip
