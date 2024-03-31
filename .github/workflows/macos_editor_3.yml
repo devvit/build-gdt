@@ -26,11 +26,10 @@ jobs:
           git clone --depth 1 --branch 3.x --recursive https://github.com/godotengine/godot
           cd godot
           echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-          git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
-          cd modules/godot_dragonbones
-          git checkout a1387eea95c68d988e4868b2affc6a48cf1506b2
-          cd ..
-          cd ..
+          curl -fsSL -JO https://github.com/mauville-technologies/godot_dragonbones/archive/a1387eea95c68d988e4868b2affc6a48cf1506b2.zip
+          bsdtar -xf godot_dragonbones*.zip
+          rm -rf godot_dragonbones*.zip
+          mv godot_dragonbones* modules/godot_dragonbones
           git clone --depth 1 --branch 3.4 --recursive https://github.com/Geequlim/ECMAScript modules/ECMAScript
           git clone --depth 1 --branch godot-3.x --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
           git apply modules/godot_dragonbones/build/android-no-rtti-patch.patch
