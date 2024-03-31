@@ -28,9 +28,16 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js'),
       webSecurity: false,
     },
-    frame: true,
+    // frame: true,
     // titleBarStyle: 'customButtonsOnHover',
-    roundedCorners: false,
+    // roundedCorners: false,
+    frame: false,
+    minimizable: false,
+    maximizable: false,
+    closable:false,
+    // thickFrame: false,
+    titleBarStyle: 'customButtonsOnHover'
+
   });
   mainWindow.webContents.session.webRequest.onBeforeSendHeaders(
     (details, callback) => {
