@@ -26,11 +26,15 @@ jobs:
           git clone --depth 1 --branch 3.x --recursive https://github.com/godotengine/godot
           cd godot
           echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-          git clone --depth 1 --recursive -b a1387eea95c68d988e4868b2affc6a48cf1506b2 https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
+          git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
+          cd modules/godot_dragonbones
+          git checkout a1387eea95c68d988e4868b2affc6a48cf1506b2
+          cd ..
+          cd ..
           git clone --depth 1 --branch 3.4 --recursive https://github.com/Geequlim/ECMAScript modules/ECMAScript
           git clone --depth 1 --branch godot-3.x --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
-          perl -pi -e 's/-fno-rtti//g' platform/android/detect.py
-          perl -pi -e 's/-fno-rtti//g' platform/javascript/detect.py
+          git apply modules/godot_dragonbones/build/android-no-rtti-patch.patch
+          git apply modules/godot_dragonbones/build/js-no-rtti-patch.patch
           git apply --directory modules/godot_dragonbones ../1.patch
           scons platform=osx arch=x86_64 target=release_debug tools=yes
           cp -r misc/dist/osx_tools.app Godot.app
