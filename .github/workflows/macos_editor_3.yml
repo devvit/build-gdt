@@ -1,7 +1,7 @@
 name: Build_macos_editor_3
 
 on:
-  # push:
+  push:
     # paths:
     #   - '**.js'
   # schedule:
@@ -18,7 +18,7 @@ jobs:
         shell: bash
         run: |
           brew update
-          brew install emscripten scons yasm
+          brew install --force --overwrite emscripten scons yasm
           git clone --depth 1 --branch 3.x --recursive https://github.com/godotengine/godot
           cd godot
           echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
