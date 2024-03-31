@@ -18,7 +18,11 @@ jobs:
         shell: bash
         run: |
           brew update
-          brew install --force --overwrite emscripten scons yasm
+          brew install --force --overwrite python@3.12
+          brew link --overwrite python@3.12
+          brew install --force --overwrite python@3.11
+          brew link --overwrite python@3.11
+          brew install emscripten scons yasm
           git clone --depth 1 --branch 3.x --recursive https://github.com/godotengine/godot
           cd godot
           echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
