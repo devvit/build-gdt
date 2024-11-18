@@ -4,13 +4,13 @@ on:
   # push:
     # paths:
     #   - '**.js'
-  schedule:
-    - cron: '0 0 * * 0'
+  # schedule:
+  #   - cron: '0 0 * * 0'
 
 jobs:
   macos_build:
     name: macOS Build
-    runs-on: "macos-latest"
+    runs-on: "macos-13"
     steps:
       - name: "checkout repo"
         uses: actions/checkout@v4

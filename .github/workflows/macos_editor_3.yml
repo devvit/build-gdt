@@ -1,7 +1,7 @@
 name: Build_macos_editor_3
 
 on:
-  push:
+  # push:
     # paths:
     #   - '**.js'
   # schedule:
