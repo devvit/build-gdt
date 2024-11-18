@@ -10,7 +10,7 @@ on:
 jobs:
   macos_build:
     name: macOS Build
-    runs-on: "macos-15-large"
+    runs-on: "macos-13"
     steps:
       - name: "checkout repo"
         uses: actions/checkout@v4
