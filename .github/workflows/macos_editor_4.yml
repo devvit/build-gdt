@@ -14,11 +14,16 @@ jobs:
     steps:
       - name: "checkout repo"
         uses: actions/checkout@v4
+      - name: "Setup emsdk"
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: 3.1.64
+          no-cache: true
       - name: "Build"
         shell: bash
         run: |
           brew update
-          brew install emscripten scons yasm
+          brew install scons yasm
           git clone --depth 1 --branch 4.1 --recursive https://github.com/godotengine/godot
           cd godot
           echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
@@ -31,8 +36,8 @@ jobs:
           cp bin/godot.macos* Godot.app/Contents/MacOS/Godot
           chmod +x Godot.app/Contents/MacOS/Godot
           codesign --force --timestamp --options=runtime --entitlements misc/dist/macos/editor.entitlements -s - Godot.app
-          scons platform=web target=template_release LINKFLAGS='-Wl,-u,scalbnf'
-          # scons platform=web target=template_debug
+          scons platform=web target=template_release
+          scons platform=web target=template_debug
           bash ../build_4.sh
           bsdtar -czf Godot.tgz Godot.app bin/*.zip bin/*.apk
       - name: "Upload artifact"
