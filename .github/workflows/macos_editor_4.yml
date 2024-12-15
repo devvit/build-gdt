@@ -2,8 +2,8 @@ name: Build_macos_editor_4
 
 on:
   push:
-    # paths:
-    #   - '**.js'
+    paths:
+      - '**.js'
   # schedule:
   #   - cron: '0 0 * * 0'
 
@@ -31,8 +31,8 @@ jobs:
           cp bin/godot.macos* Godot.app/Contents/MacOS/Godot
           chmod +x Godot.app/Contents/MacOS/Godot
           codesign --force --timestamp --options=runtime --entitlements misc/dist/macos/editor.entitlements -s - Godot.app
-          scons platform=web target=template_release
-          scons platform=web target=template_debug
+          scons platform=web target=template_release LINKFLAGS='-Wl,-u,scalbnf'
+          # scons platform=web target=template_debug
           bash ../build_4.sh
           bsdtar -czf Godot.tgz Godot.app bin/*.zip bin/*.apk
       - name: "Upload artifact"
