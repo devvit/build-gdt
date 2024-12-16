@@ -2,8 +2,8 @@ name: Build_macos_editor_4
 
 on:
   push:
-    paths:
-      - '**.js'
+    # paths:
+    #   - '**.js'
   # schedule:
   #   - cron: '0 0 * * 0'
 
@@ -24,12 +24,12 @@ jobs:
         run: |
           brew update
           brew install scons yasm
-          git clone --depth 1 --branch 4.1 --recursive https://github.com/godotengine/godot
+          git clone --depth 1 --branch 4.3 --recursive https://github.com/godotengine/godot
           cd godot
           echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           sh misc/scripts/install_vulkan_sdk_macos.sh
           git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
-          git clone --depth 1 --recursive https://github.com/Geequlim/ECMAScript modules/javascript
+          # git clone --depth 1 --recursive https://github.com/Geequlim/ECMAScript modules/javascript
           scons platform=macos arch=x86_64 target=editor
           cp -r misc/dist/macos_tools.app ./Godot.app
           mkdir -p Godot.app/Contents/MacOS
