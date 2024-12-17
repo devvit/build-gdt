@@ -30,14 +30,15 @@ jobs:
           sh misc/scripts/install_vulkan_sdk_macos.sh
           git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
           # git clone --depth 1 --recursive https://github.com/Geequlim/ECMAScript modules/javascript
-          scons platform=macos arch=x86_64 target=editor
+          git clone --depth 1 --recursive https://github.com/godotjs/GodotJS modules/GodotJS
+          scons platform=macos arch=x86_64 target=editor use_quickjs=yes
           cp -r misc/dist/macos_tools.app ./Godot.app
           mkdir -p Godot.app/Contents/MacOS
           cp bin/godot.macos* Godot.app/Contents/MacOS/Godot
           chmod +x Godot.app/Contents/MacOS/Godot
           codesign --force --timestamp --options=runtime --entitlements misc/dist/macos/editor.entitlements -s - Godot.app
-          scons platform=web target=template_release
-          scons platform=web target=template_debug
+          scons platform=web target=template_release threads=no use_quickjs=yes
+          scons platform=web target=template_debug threads=no use_quickjs=yes
           bash ../build_4.sh
           bsdtar -czf Godot.tgz Godot.app bin/*.zip bin/*.apk
       - name: "Upload artifact"
