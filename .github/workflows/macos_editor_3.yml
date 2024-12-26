@@ -17,7 +17,7 @@ jobs:
       - name: "Build"
         shell: bash
         run: |
-          bash ../build_3.sh
+          bash build_3.sh
       - name: "Upload artifact"
         uses: actions/upload-artifact@v4
         with:
