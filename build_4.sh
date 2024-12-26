@@ -26,7 +26,7 @@ scons platform=web target=template_release use_quickjs=yes
 # scons platform=web target=template_debug use_quickjs=yes
 
 export JAVA_HOME=$JAVA_HOME_17_X64
-scons platform=android target=template_release arch=arm32 use_quickjs=yes
+# scons platform=android target=template_release arch=arm32 use_quickjs=yes
 scons platform=android target=template_release arch=arm64 use_quickjs=yes generate_apk=yes
 # scons platform=android target=template_debug arch=arm32 use_quickjs=yes
 # scons platform=android target=template_debug arch=arm64 use_quickjs=yes
