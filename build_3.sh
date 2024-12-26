@@ -9,6 +9,7 @@ openssl rand -hex 32 >godot.gdkey
 export SCRIPT_AES256_ENCRYPTION_KEY=$(cat godot.gdkey)
 
 echo "version=$(git rev-parse --short HEAD)" >>$GITHUB_ENV
+
 curl -fsSL -JO https://github.com/mauville-technologies/godot_dragonbones/archive/a1387eea95c68d988e4868b2affc6a48cf1506b2.zip
 bsdtar -xf godot_dragonbones*.zip
 rm -rf godot_dragonbones*.zip
@@ -27,7 +28,6 @@ chmod +x Godot.app/Contents/MacOS/Godot
 scons platform=javascript tools=no target=release LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
 # https://github.com/Geequlim/ECMAScript/issues/57
 # scons platform=javascript tools=no target=release_debug LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
-# bash ../build_3.sh
 
 export JAVA_HOME=$JAVA_HOME_17_X64
 scons platform=android target=release android_arch=armv7
