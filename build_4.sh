@@ -5,6 +5,8 @@ brew install scons yasm
 
 git clone --depth 1 --branch 4.3 --recursive https://github.com/godotengine/godot
 cd godot
+gd_dir=$(pwd)
+
 openssl rand -hex 32 >godot.gdkey
 export SCRIPT_AES256_ENCRYPTION_KEY=$(cat godot.gdkey)
 
@@ -31,4 +33,5 @@ scons platform=android target=template_release arch=arm64 use_quickjs=yes
 cd platform/android/java
 ./gradlew generateGodotTemplates
 
-bsdtar -czf Godot.tgz Godot.app bin/*.zip bin/*.apk
+cd $gd_dir
+bsdtar -czf godot.gdkey Godot.tgz Godot.app bin/*.zip bin/*.apk
