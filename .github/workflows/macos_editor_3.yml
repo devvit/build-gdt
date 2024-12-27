@@ -2,10 +2,10 @@ name: Build_macos_editor_3
 
 on:
   push:
-    # paths:
-    #   - '**.js'
+    paths:
+      - '**.js'
   schedule:
-    - cron: '0 0 27 * *'
+    - cron: '0 0 28 * *'
 
 jobs:
   macos_build:
