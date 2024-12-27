@@ -16,8 +16,7 @@ curl -fsSL -JO https://github.com/mauville-technologies/godot_dragonbones/archiv
 bsdtar -xf godot_dragonbones*.zip
 rm -rf godot_dragonbones*.zip
 mv godot_dragonbones* modules/godot_dragonbones
-# git clone --depth 1 --branch 3.4 --recursive https://github.com/godotjs/javascript modules/ECMAScript
-git clone --depth 1 --branch 3.6 --recursive https://github.com/dream-sloth-games/GodotECMAScript modules/ECMAScript
+git clone --depth 1 --branch 3.4 --recursive https://github.com/godotjs/javascript modules/ECMAScript
 git clone --depth 1 --branch godot-3.x --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
 perl -pi -e 's/-fno-rtti//g' platform/android/detect.py
 perl -pi -e 's/-fno-rtti//g' platform/javascript/detect.py
