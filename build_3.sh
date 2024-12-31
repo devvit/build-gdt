@@ -3,7 +3,7 @@
 brew update
 brew install emscripten scons yasm
 
-git clone --depth 1 --branch 3.x --recursive https://github.com/godotengine/godot
+git clone --depth 1 -b 3.x --recursive https://github.com/godotengine/godot
 cd godot
 gd_dir=$(pwd)
 
@@ -16,8 +16,8 @@ curl -fsSL -JO https://github.com/mauville-technologies/godot_dragonbones/archiv
 bsdtar -xf godot_dragonbones*.zip
 rm -rf godot_dragonbones*.zip
 mv godot_dragonbones* modules/godot_dragonbones
-git clone --depth 1 --branch 3.4 --recursive https://github.com/godotjs/javascript modules/ECMAScript
-git clone --depth 1 --branch godot-3.x --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
+git clone --depth 1 -b 3.4 --recursive https://github.com/godotjs/javascript modules/ECMAScript
+git clone --depth 1 -b godot-3.x --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
 perl -pi -e 's/-fno-rtti//g' platform/android/detect.py
 perl -pi -e 's/-fno-rtti//g' platform/javascript/detect.py
 git apply --directory modules/godot_dragonbones ../1.patch
