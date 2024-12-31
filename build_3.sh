@@ -3,7 +3,7 @@
 brew update
 brew install emscripten scons yasm
 
-git clone --depth 1 --branch 3.x --recursive https://github.com/godotengine/godot
+git clone --depth 1 --branch 3.6 --recursive https://github.com/godotengine/godot
 cd godot
 gd_dir=$(pwd)
 
