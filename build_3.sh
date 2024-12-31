@@ -40,7 +40,5 @@ cd platform/android/java
 ./gradlew generateGodotTemplates
 
 cd $gd_dir
-cp bin/android_release.apk bin/android_debug.apk
-cp bin/godot.javascript.opt.zip bin/webassembly_debug.zip
-cp bin/godot.javascript.opt.zip bin/webassembly_release.zip
-bsdtar -czf Godot.tgz godot.gdkey Godot.app bin/*
+cp godot.gdkey bin/
+bsdtar -czf Godot.tgz Godot.app bin/*
