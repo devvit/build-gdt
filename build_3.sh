@@ -22,7 +22,7 @@ perl -pi -e 's/-fno-rtti//g' platform/android/detect.py
 perl -pi -e 's/-fno-rtti//g' platform/javascript/detect.py
 git apply --directory modules/godot_dragonbones ../1.patch
 git apply --directory modules/godot_dragonbones ../2.patch
-scons platform=osx arch=x86_64 target=release_debug tools=yes
+scons platform=osx arch=$(uname -m) target=release_debug tools=yes
 cp -r misc/dist/osx_tools.app Godot.app
 mkdir -p Godot.app/Contents/MacOS
 cp bin/godot.osx* Godot.app/Contents/MacOS/Godot
