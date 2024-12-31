@@ -16,6 +16,7 @@ sh misc/scripts/install_vulkan_sdk_macos.sh
 git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
 # git clone --depth 1 --recursive https://github.com/Geequlim/ECMAScript modules/javascript
 git clone --depth 1 --recursive https://github.com/godotjs/GodotJS modules/GodotJS
+git clone --depth 1 --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
 git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
 scons platform=macos arch=x86_64 target=editor use_quickjs=yes
 cp -r misc/dist/macos_tools.app ./Godot.app
