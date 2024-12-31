@@ -17,7 +17,7 @@ git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_d
 git clone --depth 1 --recursive https://github.com/godotjs/GodotJS modules/GodotJS
 git clone --depth 1 --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
 git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
-scons platform=macos arch=$(uname -m) target=editor use_quickjs=yes
+scons platform=macos arch=x86_64 target=editor use_quickjs=yes
 cp -r misc/dist/macos_tools.app ./Godot.app
 mkdir -p Godot.app/Contents/MacOS
 cp bin/godot.macos* Godot.app/Contents/MacOS/Godot
