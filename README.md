@@ -11,7 +11,7 @@ keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystor
 keytool -v -genkey -keystore mygame.keystore -alias mygame -keyalg RSA -validity 10000
 
 keytool -genkey -v -keystore mygame.keystore -alias mygame -keyalg RSA -keysize 2048 -validity 10000
-~/Library/Android/sdk/build-tools/33.0.2/apksigner sign --ks mygame.keystore --ks-key-alias mygame mygame.apk
+apksigner sign --ks mygame.keystore --ks-key-alias mygame mygame.apk
 ```
 
 ```javascript
