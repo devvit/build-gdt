@@ -23,7 +23,7 @@ mkdir -p Godot.app/Contents/MacOS
 cp bin/godot.macos* Godot.app/Contents/MacOS/Godot
 chmod +x Godot.app/Contents/MacOS/Godot
 codesign --force --timestamp --options=runtime --entitlements misc/dist/macos/editor.entitlements -s - Godot.app
-scons platform=web target=template_release use_quickjs=yes
+scons platform=web target=template_release threads=no use_quickjs=yes
 # scons platform=web target=template_debug use_quickjs=yes
 
 export JAVA_HOME=$JAVA_HOME_17_X64
