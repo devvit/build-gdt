@@ -5,8 +5,8 @@ on:
     paths:
       - '**.js'
   schedule:
-    - cron: '30 8 * * *'
-    # - cron: '0 0 * * mon'
+    # - cron: '30 8 * * *'
+    - cron: '0 0 * * mon'
     # - cron: '0 0 1 * *'
 
 jobs:
