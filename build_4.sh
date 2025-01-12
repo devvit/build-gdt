@@ -3,7 +3,7 @@
 brew update
 brew install scons yasm
 
-git clone --depth 1 -b 4.3 --recursive https://github.com/godotengine/godot
+git clone --depth 1 --recursive https://github.com/godotengine/godot
 cd godot
 gd_dir=$(pwd)
 
@@ -14,11 +14,11 @@ echo "version=$(git rev-parse --short HEAD)" >>$GITHUB_ENV
 
 sh misc/scripts/install_vulkan_sdk_macos.sh
 git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
-git clone --depth 1 --recursive https://github.com/godotjs/GodotJS modules/GodotJS
+# git clone --depth 1 --recursive https://github.com/godotjs/GodotJS modules/GodotJS
 git clone --depth 1 --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
 git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
-qjs="use_quickjs=yes"
-# qjs=""
+# qjs="use_quickjs=yes"
+qjs=""
 scons platform=macos arch=x86_64 target=editor $qjs
 cp -r misc/dist/macos_tools.app ./Godot.app
 mkdir -p Godot.app/Contents/MacOS
