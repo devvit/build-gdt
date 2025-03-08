@@ -20,8 +20,8 @@ git clone --depth 1 -b 3.4 --recursive https://github.com/godotjs/javascript mod
 git clone --depth 1 -b godot-3.x --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
 perl -pi -e 's/-fno-rtti//g' platform/android/detect.py
 perl -pi -e 's/-fno-rtti//g' platform/javascript/detect.py
-git apply --directory modules/godot_dragonbones ../1.patch
-git apply --directory modules/godot_dragonbones ../2.patch
+git apply --directory modules/godot_dragonbones ../3.x_1.patch
+git apply --directory modules/godot_dragonbones ../3.x_2.patch
 scons platform=osx arch=x86_64 target=release_debug tools=yes
 cp -r misc/dist/osx_tools.app Godot.app
 mkdir -p Godot.app/Contents/MacOS

@@ -15,9 +15,9 @@ echo "version=$(git rev-parse --short HEAD)" >>$GITHUB_ENV
 sh misc/scripts/install_vulkan_sdk_macos.sh
 git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
 git clone --depth 1 --recursive https://github.com/godotjs/GodotJS modules/GodotJS
-# git clone --depth 1 --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
-# git clone --depth 1 -b v1.3.1 --recursive https://github.com/limbonaut/limboai modules/limboai
-git apply --directory modules/godot_dragonbones ../4_4.patch
+git clone --depth 1 --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
+git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
+git apply --directory modules/godot_dragonbones ../4.4_1.patch
 qjs="use_quickjs=yes"
 # qjs=""
 scons platform=macos arch=x86_64 target=editor $qjs
