@@ -1,0 +1,19 @@
+diff --git a/src/GDDisplay.h b/src/GDDisplay.h
+index 731e724..ab9ea09 100644
+--- a/src/GDDisplay.h
++++ b/src/GDDisplay.h
+@@ -3,6 +3,7 @@
+ 
+ #include "dragonBones/DragonBonesHeaders.h"
+ #include "scene/2d/node_2d.h"
++#include "scene/resources/canvas_item_material.h"
+ 
+ DRAGONBONES_USING_NAME_SPACE;
+ 
+@@ -76,4 +77,4 @@ public:
+     }
+ };
+ 
+-#endif // GDISPLAY_H
+\ No newline at end of file
++#endif // GDISPLAY_H
