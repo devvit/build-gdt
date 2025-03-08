@@ -12,9 +12,18 @@ index a995f6d..2d2ea71 100644
      ADD_SIGNAL(MethodInfo("dragon_anim_start", PropertyInfo(Variant::STRING, "anim")));
      ADD_SIGNAL(MethodInfo("dragon_anim_complete", PropertyInfo(Variant::STRING, "anim")));
 diff --git a/register_types.cpp b/register_types.cpp
-index 87f1be3..1ab9b07 100644
+index 87f1be3..55b2d85 100644
 --- a/register_types.cpp
 +++ b/register_types.cpp
+@@ -31,7 +31,7 @@ public:
+ #if (VERSION_MAJOR >=4)
+ 	virtual RES load(const String &p_path, const String &p_original_path, Error *r_error, bool p_use_sub_threads, float *r_progress, bool p_no_cache) {
+ #else
+-	virtual RES load(const String &p_path, const String &p_original_path, Error *r_error) {
++	virtual RES load(const String &p_path, const String &p_original_path, Error *r_error, bool p_no_subresource_cache = false) {
+ #endif
+ 		float __tm_start = OS::get_singleton()->get_ticks_msec();
+ 		GDDragonBones::GDDragonBonesResource* __p_res = memnew(GDDragonBones::GDDragonBonesResource);
 @@ -108,6 +108,8 @@ void register_godot_dragonbones_types()
  	REG_VIRTUAL_CLASS_BIND_GODO<GDArmatureDisplay>();
  	REG_VIRTUAL_CLASS_BIND_GODO<GDSlot>();
