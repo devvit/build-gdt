@@ -18,7 +18,7 @@ git clone --depth 1 --recursive https://github.com/godotjs/GodotJS modules/Godot
 git clone --depth 1 --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
 git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
 git apply --directory modules/godot_dragonbones ../4.x_1.patch
-qjs="use_quickjs=yes"
+qjs="use_quickjs_ng=yes"
 # qjs=""
 scons platform=macos arch=x86_64 target=editor $qjs
 cp -r misc/dist/macos_tools.app ./Godot.app
