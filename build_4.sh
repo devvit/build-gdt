@@ -21,9 +21,10 @@ git apply --directory modules/godot_dragonbones ../4.x_1.patch
 # qjs="use_quickjs_ng=yes"
 qjs=""
 scons platform=macos arch=x86_64 target=editor $qjs
+scons platform=macos arch=arm64 target=editor $qjs generate_bundle=yes
 cp -r misc/dist/macos_tools.app ./Godot.app
 mkdir -p Godot.app/Contents/MacOS
-cp bin/godot.macos* Godot.app/Contents/MacOS/Godot
+cp bin/godot.macos.editor.universal Godot.app/Contents/MacOS/Godot
 chmod +x Godot.app/Contents/MacOS/Godot
 codesign --force --timestamp --options=runtime --entitlements misc/dist/macos/editor.entitlements -s - Godot.app
 scons platform=web target=template_release $qjs
