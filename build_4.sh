@@ -30,7 +30,7 @@ codesign --force --timestamp --options=runtime --entitlements misc/dist/macos/ed
 scons platform=web target=template_release $qjs
 # scons platform=web target=template_debug $qjs
 
-export JAVA_HOME=$JAVA_HOME_17_X64
+export JAVA_HOME=$JAVA_HOME_17_arm64
 scons platform=android target=template_release arch=arm32 $qjs
 scons platform=android target=template_release arch=arm64 generate_apk=yes $qjs
 # scons platform=android target=template_debug arch=arm32 $qjs
