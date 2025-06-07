@@ -2,15 +2,15 @@ name: Build_macos_editor_3
 
 on:
   push:
-    paths:
-      - '**.js'
+    # paths:
+    #   - '**.js'
   schedule:
     - cron: '0 0 * * mon'
 
 jobs:
   macos_build:
     name: macOS Build
-    runs-on: "macos-13"
+    runs-on: "macos-latest"
     steps:
       - name: "checkout repo"
         uses: actions/checkout@v4

@@ -22,15 +22,17 @@ perl -pi -e 's/-fno-rtti//g' platform/android/detect.py
 perl -pi -e 's/-fno-rtti//g' platform/javascript/detect.py
 git apply --directory modules/godot_dragonbones ../3.x_1.patch
 scons platform=osx arch=x86_64 target=release_debug tools=yes
+scons platform=osx arch=arm64 target=release_debug tools=yes
+lipo -create bin/godot.osx.tools.x86_64 bin/godot.osx.tools.arm64 -output bin/godot.osx.tools.universal
 cp -r misc/dist/osx_tools.app Godot.app
 mkdir -p Godot.app/Contents/MacOS
-cp bin/godot.osx* Godot.app/Contents/MacOS/Godot
+cp bin/godot.osx.tools.universal Godot.app/Contents/MacOS/Godot
 chmod +x Godot.app/Contents/MacOS/Godot
 scons platform=javascript tools=no target=release LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
 # https://github.com/Geequlim/ECMAScript/issues/57
 # scons platform=javascript tools=no target=release_debug LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
 
-export JAVA_HOME=$JAVA_HOME_17_X64
+export JAVA_HOME=$JAVA_HOME_17_arm64
 scons platform=android target=release android_arch=armv7
 scons platform=android target=release android_arch=arm64v8
 # scons platform=android target=release_debug android_arch=armv7
