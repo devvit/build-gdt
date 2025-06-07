@@ -23,7 +23,7 @@ perl -pi -e 's/-fno-rtti//g' platform/javascript/detect.py
 git apply --directory modules/godot_dragonbones ../3.x_1.patch
 scons platform=osx arch=x86_64 target=release_debug tools=yes
 scons platform=osx arch=arm64 target=release_debug tools=yes
-lipo -create bin/godot.osx.tools.x86_64 bin/godot.osx.tools.arm64 -output bin/godot.osx.tools.universal
+lipo -create bin/godot.osx.opt.tools.x86_64 bin/godot.osx.opt.tools.arm64 -output bin/godot.osx.tools.universal
 cp -r misc/dist/osx_tools.app Godot.app
 mkdir -p Godot.app/Contents/MacOS
 cp bin/godot.osx.tools.universal Godot.app/Contents/MacOS/Godot
