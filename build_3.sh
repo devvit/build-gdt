@@ -42,4 +42,5 @@ cd platform/android/java
 
 cd $gd_dir
 cp godot.gdkey bin/
+rm -rf bin/godot.osx*
 bsdtar -czf Godot.tgz Godot.app bin/*
