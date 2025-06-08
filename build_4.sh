@@ -22,7 +22,7 @@ git apply --directory modules/godot_dragonbones ../4.x_1.patch
 # qjs="use_quickjs_ng=yes"
 qjs=""
 scons platform=macos arch=x86_64 target=editor $qjs
-scons platform=macos arch=arm64 target=editor generate_bundle=yes $qjs
+scons platform=macos arch=arm64 target=editor $qjs
 lipo -create bin/godot.macos.editor.x86_64 bin/godot.macos.editor.arm64 -output bin/godot.macos.editor.universal
 cp -r misc/dist/macos_tools.app ./Godot.app
 mkdir -p Godot.app/Contents/MacOS
