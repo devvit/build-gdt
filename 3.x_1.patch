@@ -1,7 +1,19 @@
 diff --git a/gddragonbones.cpp b/gddragonbones.cpp
-index a995f6d..2d2ea71 100644
+index a995f6d..ba1317b 100644
 --- a/gddragonbones.cpp
 +++ b/gddragonbones.cpp
+@@ -118,10 +118,10 @@ void GDDragonBones::_cleanup()
+     b_inited = false;
+ 
+ 	if (p_armature != nullptr) {
+-		p_armature->queue_delete();
+ 		if (p_armature->get_parent() == this) {
+ 			remove_child(p_armature);
+ 		}
++		p_armature->queue_delete();
+ 		p_armature = nullptr;
+ 	}
+ 
 @@ -1031,7 +1031,7 @@ void GDDragonBones::_bind_methods()
  	ADD_PROPERTY(PropertyInfo(REAL_VARIANT, "playback/progress", PROPERTY_HINT_RANGE, "-100,100,0.010"), _SCS("seek"), _SCS("get_progress"));
      ADD_PROPERTY(PropertyInfo(Variant::BOOL, "playback/play"), _SCS("play"), _SCS("is_playing"));
