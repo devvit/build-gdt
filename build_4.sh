@@ -3,7 +3,8 @@
 brew update
 brew install scons yasm
 
-git clone --depth 1 -b 4.4 --recursive https://github.com/godotengine/godot
+# git clone --depth 1 -b 4.4 --recursive https://github.com/godotengine/godot
+git clone --depth 1 -b 4.3 --recursive https://github.com/Redot-Engine/redot-engine godot
 cd godot
 gd_dir=$(pwd)
 
