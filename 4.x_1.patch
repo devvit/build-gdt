@@ -1,3 +1,20 @@
+diff --git a/src/GDArmatureDisplay.h b/src/GDArmatureDisplay.h
+index ce55e20..d13115b 100644
+--- a/src/GDArmatureDisplay.h
++++ b/src/GDArmatureDisplay.h
+@@ -120,9 +120,10 @@ public:
+ 
+ 	Dictionary get_bones();
+ 	GDBone2D *get_bone(const String &name);
++	void force_parent_owned() {};
+ };
+ 
+ VARIANT_ENUM_CAST(GDArmatureDisplay::AnimMode);
+ VARIANT_ENUM_CAST(GDArmatureDisplay::AnimFadeOutMode);
+ 
+-#endif // GDARMATUREDESPLAY_H
+\ No newline at end of file
++#endif // GDARMATUREDESPLAY_H
 diff --git a/src/GDDisplay.h b/src/GDDisplay.h
 index 731e724..ab9ea09 100644
 --- a/src/GDDisplay.h
