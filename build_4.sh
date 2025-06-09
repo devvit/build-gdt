@@ -29,8 +29,8 @@ mkdir -p Godot.app/Contents/MacOS
 cp bin/godot.macos.editor.universal Godot.app/Contents/MacOS/Godot
 chmod +x Godot.app/Contents/MacOS/Godot
 codesign --force --timestamp --options=runtime --entitlements misc/dist/macos/editor.entitlements -s - Godot.app
-scons platform=web target=template_release $qjs
-# scons platform=web target=template_debug $qjs
+scons platform=web dlink_enabled=yes target=template_release $qjs
+# scons platform=web dlink_enabled=yes target=template_debug $qjs
 
 export JAVA_HOME=$JAVA_HOME_17_arm64
 scons platform=android target=template_release arch=arm32 $qjs
