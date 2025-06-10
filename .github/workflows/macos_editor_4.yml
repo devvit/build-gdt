@@ -6,6 +6,7 @@ on:
       - '**.js'
   schedule:
     - cron: '0 0 * * mon'
+    - cron: '0 6 * * *'
 
 jobs:
   macos_build:
