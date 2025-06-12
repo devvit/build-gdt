@@ -1,0 +1,44 @@
+diff --git a/ecmascript.cpp b/ecmascript.cpp
+index af114db..c37aa3e 100644
+--- a/ecmascript.cpp
++++ b/ecmascript.cpp
+@@ -240,7 +240,7 @@ bool ECMAScript::is_valid() const {
+ void ECMAScript::_bind_methods() {
+ }
+ 
+-RES ResourceFormatLoaderECMAScript::load(const String &p_path, const String &p_original_path, Error *r_error) {
++RES ResourceFormatLoaderECMAScript::load(const String &p_path, const String &p_original_path, Error *r_error, bool p_no_subresource_cache) {
+ 	Error err = OK;
+ 	Ref<ECMAScriptModule> module = ResourceFormatLoaderECMAScriptModule::load_static(p_path, p_original_path, &err);
+ 	if (r_error) *r_error = err;
+@@ -326,7 +326,7 @@ ECMAScriptModule::ECMAScriptModule() {
+ 	set_source_code("module.exports = {};" ENDL);
+ }
+ 
+-RES ResourceFormatLoaderECMAScriptModule::load(const String &p_path, const String &p_original_path, Error *r_error) {
++RES ResourceFormatLoaderECMAScriptModule::load(const String &p_path, const String &p_original_path, Error *r_error, bool p_no_subresource_cache) {
+ 	return load_static(p_path, p_original_path, r_error);
+ }
+ 
+diff --git a/ecmascript.h b/ecmascript.h
+index 8217031..5d1713b 100644
+--- a/ecmascript.h
++++ b/ecmascript.h
+@@ -90,7 +90,7 @@ public:
+ class ResourceFormatLoaderECMAScript : public ResourceFormatLoader {
+ 	GDCLASS(ResourceFormatLoaderECMAScript, ResourceFormatLoader)
+ public:
+-	virtual RES load(const String &p_path, const String &p_original_path = "", Error *r_error = NULL);
++	virtual RES load(const String &p_path, const String &p_original_path = "", Error *r_error = NULL, bool p_no_subresource_cache = false);
+ 	virtual void get_recognized_extensions(List<String> *p_extensions) const;
+ 	virtual void get_recognized_extensions_for_type(const String &p_type, List<String> *p_extensions) const;
+ 	virtual bool handles_type(const String &p_type) const;
+@@ -125,7 +125,7 @@ public:
+ class ResourceFormatLoaderECMAScriptModule : public ResourceFormatLoader {
+ 	GDCLASS(ResourceFormatLoaderECMAScriptModule, ResourceFormatLoader)
+ public:
+-	virtual RES load(const String &p_path, const String &p_original_path = "", Error *r_error = NULL);
++	virtual RES load(const String &p_path, const String &p_original_path = "", Error *r_error = NULL, bool p_no_subresource_cache = false);
+ 	virtual void get_recognized_extensions(List<String> *p_extensions) const;
+ 	virtual void get_recognized_extensions_for_type(const String &p_type, List<String> *p_extensions) const;
+ 	virtual bool handles_type(const String &p_type) const;
