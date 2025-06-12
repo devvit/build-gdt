@@ -29,14 +29,10 @@ mkdir -p Godot.app/Contents/MacOS
 cp bin/godot.osx.tools.universal Godot.app/Contents/MacOS/Godot
 chmod +x Godot.app/Contents/MacOS/Godot
 scons platform=javascript tools=no target=release LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
-# https://github.com/Geequlim/ECMAScript/issues/57
-# scons platform=javascript tools=no target=release_debug LINKFLAGS='-sGL_ENABLE_GET_PROC_ADDRESS'
 
 export JAVA_HOME=$JAVA_HOME_17_arm64
 scons platform=android target=release android_arch=armv7
 scons platform=android target=release android_arch=arm64v8
-# scons platform=android target=release_debug android_arch=armv7
-# scons platform=android target=release_debug android_arch=arm64v8
 cd platform/android/java
 ./gradlew generateGodotTemplates
 
