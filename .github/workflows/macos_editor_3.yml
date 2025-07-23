@@ -4,8 +4,8 @@ on:
   push:
     paths:
       - '**.js'
-  schedule:
-    - cron: '0 0 * * mon'
+  # schedule:
+    # - cron: '0 0 * * mon'
 
 jobs:
   macos_build:
