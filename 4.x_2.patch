@@ -1,0 +1,18 @@
+diff --git a/bullet_type.h b/bullet_type.h
+index 0e6a071..f2756a0 100644
+--- a/bullet_type.h
++++ b/bullet_type.h
+@@ -6,6 +6,13 @@
+ #include "scene/resources/2d/shape_2d.h"
+ #include "scene/resources/texture.h"
+ 
++#define _USE_MATH_DEFINES
++#include <cmath>
++
++#ifndef Math_PI
++#define Math_PI M_PI
++#endif
++
+ class BulletType : public Resource {
+ 	GDCLASS(BulletType, Resource);
+ 
