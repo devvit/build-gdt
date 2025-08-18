@@ -1,6 +1,6 @@
 #
 
-TEST
+test
 
 ```bash
 ibtool --compile ConsoleWindow.nib ConsoleWindow.xib
