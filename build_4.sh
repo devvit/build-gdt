@@ -18,7 +18,7 @@ git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_d
 git clone --depth 1 --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
 git apply --directory modules/qurobullet ../4.x_2.patch
 git clone --depth 1 --recursive https://github.com/Zylann/godot_voxel modules/voxel
-# git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
+git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
 git apply --directory modules/godot_dragonbones ../4.x_1.patch
 # qjs="use_quickjs_ng=yes"
 qjs=""
