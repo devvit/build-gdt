@@ -1,5 +1,7 @@
 #
 
+# https://github.com/godotengine/godot-build-scripts
+
 build_dir=$(pwd)
 
 mkdir -p $build_dir/osxcross
