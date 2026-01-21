@@ -4,7 +4,7 @@ build_dir=$(pwd)
 
 mkdir -p $build_dir/osxcross
 docker pull ghcr.io/crazy-max/osxcross
-docker create --name tmp-osxcross ghcr.io/crazy-max/osxcross
+docker create --name tmp-osxcross ghcr.io/crazy-max/osxcross sleep infinity
 docker cp tmp-osxcross:/osxcross/. $build_dir/osxcross/
 docker rm tmp-osxcross
 export OSXCROSS_ROOT=$build_dir/osxcross
