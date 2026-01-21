@@ -14,6 +14,8 @@ ln -sf $build_dir/osxcross target
 export OSXCROSS_ROOT=$build_dir/osxcross
 export PATH="$build_dir/osxcross/bin:$PATH"
 export LD_LIBRARY_PATH="$build_dir/osxcross/lib:$LD_LIBRARY_PATH"
+echo '-----------------------'
+ls $build_dir/osxcross/bin
 
 # macOS needs MoltenVK
 mkdir -p $build_dir/moltenvk
@@ -53,15 +55,21 @@ openssl rand -hex 32 >godot.gdkey
 export SCRIPT_AES256_ENCRYPTION_KEY=$(cat godot.gdkey)
 echo "version=$(git rev-parse --short HEAD)" >>$GITHUB_ENV
 
-echo '-----------------------'
-ls $build_dir/osxcross/bin
+git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
+git clone --depth 1 --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
+git apply --directory modules/qurobullet ../4.x_2.patch
+git clone --depth 1 --recursive https://github.com/Zylann/godot_voxel modules/voxel
+git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
+git apply --directory modules/godot_dragonbones ../4.x_1.patch
 
 echo 'BUILD MACOS'
-scons platform=macos arch=x86_64 target=editor osxcross_sdk=darwin24.5 production=yes use_volk=no \
-    vulkan_sdk_path=$build_dir/moltenvk angle_libs=$build_dir/angle accesskit_sdk_path=$build_dir/accesskit/accesskit-c
+args="osxcross_sdk=darwin24.5 production=yes use_volk=no vulkan_sdk_path=$build_dir/moltenvk angle_libs=$build_dir/angle accesskit_sdk_path=$build_dir/accesskit/accesskit-c"
+scons platform=macos arch=x86_64 target=editor $args
+# scons platform=macos arch=arm64 target=editor $args
 # lipo -create bin/godot.macos.editor.x86_64 bin/godot.macos.editor.arm64 -output bin/godot.macos.editor.universal
 cp -r misc/dist/macos_tools.app ./Godot.app
 mkdir -p Godot.app/Contents/MacOS
+# cp bin/godot.macos.editor.universal Godot.app/Contents/MacOS/Godot
 cp bin/godot.macos.editor.x86_64 Godot.app/Contents/MacOS/Godot
 chmod +x Godot.app/Contents/MacOS/Godot
 # codesign --force --timestamp --options=runtime --entitlements misc/dist/macos/editor.entitlements -s - Godot.app
