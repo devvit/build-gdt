@@ -10,8 +10,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: crazymax/osxcross
     steps:
     - name: "checkout repo"
       uses: actions/checkout@v4
@@ -22,6 +20,6 @@ jobs:
     - name: "Upload artifact"
       uses: actions/upload-artifact@v4
       with:
-        name: macos-${{ env.version }}
-        path: "godot/Godot.tgz"
+        name: macos-build
+        path: "Godot.tgz"
         retention-days: 3
