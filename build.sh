@@ -64,8 +64,8 @@ git apply --directory modules/godot_dragonbones $build_dir/4.x_1.patch
 
 echo 'BUILD MACOS'
 args="osxcross_sdk=darwin24.5 production=yes use_volk=no vulkan_sdk_path=$build_dir/moltenvk angle_libs=$build_dir/angle accesskit_sdk_path=$build_dir/accesskit/accesskit-c"
-scons platform=macos arch=x86_64 target=editor $args
-# scons platform=macos arch=arm64 target=editor $args
+scons -Q platform=macos arch=x86_64 target=editor $args
+# scons -Q platform=macos arch=arm64 target=editor $args
 # lipo -create bin/godot.macos.editor.x86_64 bin/godot.macos.editor.arm64 -output bin/godot.macos.editor.universal
 cp -r misc/dist/macos_tools.app ./Godot.app
 mkdir -p Godot.app/Contents/MacOS
