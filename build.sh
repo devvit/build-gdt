@@ -8,13 +8,17 @@ docker run --rm \
     ghcr.io/crazy-max/osxcross \
     bash -c "
 apt-get update && apt-get install -y scons
-OSXCROSS_ROOT=/osxcross
+
+export OSXCROSS_ROOT=/osxcross
 
 git clone --depth 1 --recursive https://github.com/godotengine/godot
 cd godot
 gd_dir=$(pwd)
 
+echo $gd_dir
+
 openssl rand -hex 32 >godot.gdkey
+ls
 export SCRIPT_AES256_ENCRYPTION_KEY=$(cat godot.gdkey)
 
 echo 'BUILD MACOS'
