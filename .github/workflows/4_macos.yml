@@ -18,6 +18,12 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y libarchive-tools scons
+        curl -fSL -JO http://mirrors.edge.kernel.org/ubuntu/pool/universe/x/xar/libxar-dev_1.8.0.498-2_amd64.deb
+        curl -fSL -JO http://mirrors.edge.kernel.org/ubuntu/pool/universe/x/xar/libxar1_1.8.0.498-2_amd64.deb
+        curl -fSL -JO http://mirrors.edge.kernel.org/ubuntu/pool/universe/x/xar/xar_1.8.0.498-2_amd64.deb
+        sudo dpkg -i libxar1_1.8.0.498-2_amd64.deb
+        sudo dpkg -i xar_1.8.0.498-2_amd64.deb
+        sudo dpkg -i libxar-dev_1.8.0.498-2_amd64.deb
         bash build.sh
     - name: "Upload artifact"
       uses: actions/upload-artifact@v4
