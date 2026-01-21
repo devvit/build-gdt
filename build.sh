@@ -1,6 +1,6 @@
 #
 
-sudo apt-get update && sudo apt-get install -y scons
+sudo apt-get update && sudo apt-get install -y scons bsdtar
 
 build_dir=$(pwd)
 
