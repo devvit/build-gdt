@@ -16,7 +16,7 @@ jobs:
     - name: "checkout repo"
       uses: actions/checkout@v4
     - name: "Build"
-      uses: actions/checkout@v4
+      shell: bash
       run: |
         bash build.sh
     - name: "Upload artifact"
