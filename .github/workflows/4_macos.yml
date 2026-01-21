@@ -17,7 +17,7 @@ jobs:
       shell: bash
       run: |
         sudo apt-get update
-        sudo apt-get install -y bsdtar scons
+        sudo apt-get install -y libarchive-tools scons
         bash build.sh
     - name: "Upload artifact"
       uses: actions/upload-artifact@v4
