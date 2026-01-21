@@ -63,7 +63,7 @@ cp -r misc/dist/macos_tools.app ./Godot.app
 mkdir -p Godot.app/Contents/MacOS
 cp bin/godot.macos.editor.x86_64 Godot.app/Contents/MacOS/Godot
 chmod +x Godot.app/Contents/MacOS/Godot
-codesign --force --timestamp --options=runtime --entitlements misc/dist/macos/editor.entitlements -s - Godot.app
+# codesign --force --timestamp --options=runtime --entitlements misc/dist/macos/editor.entitlements -s - Godot.app
 
 echo 'PACKAGE ALL'
 cd $build_dir/godot
