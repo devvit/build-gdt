@@ -19,7 +19,7 @@ openssl rand -hex 32 >godot.gdkey
 export SCRIPT_AES256_ENCRYPTION_KEY=$(cat godot.gdkey)
 echo "version=$(git rev-parse --short HEAD)" >>$GITHUB_ENV
 
-sh misc/scripts/install_vulkan_sdk_macos.sh
+bash misc/scripts/install_vulkan_sdk_macos.sh
 
 echo 'BUILD MACOS'
 scons platform=macos arch=x86_64 target=editor
