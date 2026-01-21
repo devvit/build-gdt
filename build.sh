@@ -50,7 +50,7 @@ export SCRIPT_AES256_ENCRYPTION_KEY=$(cat godot.gdkey)
 echo "version=$(git rev-parse --short HEAD)" >>$GITHUB_ENV
 
 echo 'BUILD MACOS'
-scons platform=macos arch=x86_64 target=editor production=yes use_volk=no \
+scons platform=macos arch=x86_64 target=editor osxcross_sdk=darwin15 production=yes use_volk=no \
     vulkan_sdk_path=$build_dir/moltenvk angle_libs=$build_dir/angle accesskit_sdk_path=$build_dir/accesskit/accesskit-c
 # lipo -create bin/godot.macos.editor.x86_64 bin/godot.macos.editor.arm64 -output bin/godot.macos.editor.universal
 cp -r misc/dist/macos_tools.app ./Godot.app
