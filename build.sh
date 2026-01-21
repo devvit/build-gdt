@@ -18,17 +18,17 @@ mkdir -p $build_dir/moltenvk
 cd $build_dir/moltenvk
 curl -fSL -JO https://github.com/godotengine/moltenvk-osxcross/releases/download/vulkan-sdk-1.3.283.0-2/MoltenVK-all.tar
 bsdtar -xf MoltenVK*.tar
+rm -rf MoltenVK*.tar
 mv MoltenVK/MoltenVK/include/ MoltenVK/
 mv MoltenVK/MoltenVK/static/MoltenVK.xcframework/ MoltenVK/
-rm -rf MoltenVK*.tar
 
 # accesskit-c for Windows, macOS and Linux
 mkdir -p $build_dir/accesskit
 cd $build_dir/accesskit
 curl -fSL -JO https://github.com/godotengine/godot-accesskit-c-static/releases/download/0.18.0/accesskit-c-0.18.0.zip
 bsdtar -xf accesskit*.zip
-mv accesskit-c-* accesskit-c
 rm -rf accesskit*.zip
+mv accesskit-c-* accesskit-c
 
 # Windows and macOS need ANGLE
 mkdir -p $build_dir/angle
