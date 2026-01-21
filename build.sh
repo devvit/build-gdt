@@ -1,6 +1,6 @@
 #
 
-apt-get update && apt-get install -y scons
+sudo apt-get update && sudo apt-get install -y scons
 
 build_dir=$(pwd)
 
