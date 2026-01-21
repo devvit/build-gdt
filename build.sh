@@ -8,6 +8,7 @@ mkdir -p $build_dir/osxcross
 docker pull ghcr.io/crazy-max/osxcross
 docker create --name tmp-osxcross ghcr.io/crazy-max/osxcross
 docker cp tmp-osxcross:/osxcross/. $build_dir/osxcross/
+docker rm tmp-osxcross
 export OSXCROSS_ROOT=$build_dir/osxcross
 export PATH="$build_dir/osxcross/bin:$PATH"
 export LD_LIBRARY_PATH="$build_dir/osxcross/lib:$LD_LIBRARY_PATH"
@@ -17,6 +18,8 @@ cd godot
 openssl rand -hex 32 >godot.gdkey
 export SCRIPT_AES256_ENCRYPTION_KEY=$(cat godot.gdkey)
 echo "version=$(git rev-parse --short HEAD)" >>$GITHUB_ENV
+
+sh misc/scripts/install_vulkan_sdk_macos.sh
 
 echo 'BUILD MACOS'
 scons platform=macos arch=x86_64 target=editor
