@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/crazy-max/osxcross
+      image: crazymax/osxcross
     steps:
     - name: "checkout repo"
       uses: actions/checkout@v4
