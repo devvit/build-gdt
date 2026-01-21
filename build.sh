@@ -55,12 +55,10 @@ openssl rand -hex 32 >godot.gdkey
 export SCRIPT_AES256_ENCRYPTION_KEY=$(cat godot.gdkey)
 echo "version=$(git rev-parse --short HEAD)" >>$GITHUB_ENV
 
-git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
-git clone --depth 1 --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
-git apply --directory modules/qurobullet $build_dir/4.x_2.patch
+git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones && git apply --directory modules/godot_dragonbones $build_dir/4.x_1.patch
+git clone --depth 1 --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet && git apply --directory modules/qurobullet $build_dir/4.x_2.patch
 git clone --depth 1 --recursive https://github.com/Zylann/godot_voxel modules/voxel
 git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
-git apply --directory modules/godot_dragonbones $build_dir/4.x_1.patch
 
 echo 'BUILD MACOS'
 args="osxcross_sdk=darwin24.5 production=yes use_volk=no vulkan_sdk_path=$build_dir/moltenvk angle_libs=$build_dir/angle accesskit_sdk_path=$build_dir/accesskit/accesskit-c"
