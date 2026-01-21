@@ -23,6 +23,7 @@ jobs:
         docker create --name tmp-osxcross ghcr.io/crazy-max/osxcross sleep infinity
         docker cp tmp-osxcross:/osxcross/. ./osxcross/
         docker rm tmp-osxcross
+        docker image rm ghcr.io/crazy-max/osxcross
         sudo cp ./osxcross/lib/* /usr/lib/x86_64-linux-gnu/
         bash build.sh
     - name: "Upload artifact"
