@@ -40,7 +40,7 @@ curl -fSL -JO $base_url-x86_32-gcc-13-release.zip
 curl -fSL -JO $base_url-arm64-macos-release.zip
 curl -fSL -JO $base_url-x86_64-macos-release.zip
 for f in `ls *.zip` do 
-    bsdtar -xf $f
+    bsdtar -xf "$f"
     rm -rf $f
 done
 
