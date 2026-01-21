@@ -18,12 +18,12 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y libarchive-tools scons
-        curl -fSL -JO http://mirrors.edge.kernel.org/ubuntu/pool/universe/x/xar/libxar-dev_1.8.0.498-2_amd64.deb
-        curl -fSL -JO http://mirrors.edge.kernel.org/ubuntu/pool/universe/x/xar/libxar1_1.8.0.498-2_amd64.deb
-        curl -fSL -JO http://mirrors.edge.kernel.org/ubuntu/pool/universe/x/xar/xar_1.8.0.498-2_amd64.deb
-        sudo dpkg -i libxar1_1.8.0.498-2_amd64.deb
-        sudo dpkg -i xar_1.8.0.498-2_amd64.deb
-        sudo dpkg -i libxar-dev_1.8.0.498-2_amd64.deb
+        mkdir -p osxcross
+        docker pull ghcr.io/crazy-max/osxcross
+        docker create --name tmp-osxcross ghcr.io/crazy-max/osxcross sleep infinity
+        docker cp tmp-osxcross:/osxcross/. ./osxcross/
+        docker rm tmp-osxcross
+        sudo cp ./osxcross/lib/* /usr/lib/x86_64-linux-gnu/
         bash build.sh
     - name: "Upload artifact"
       uses: actions/upload-artifact@v4
