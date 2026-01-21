@@ -1,7 +1,5 @@
 #
 
-sudo apt-get update && sudo apt-get install -y scons bsdtar
-
 build_dir=$(pwd)
 
 mkdir -p $build_dir/osxcross
@@ -62,7 +60,7 @@ chmod +x Godot.app/Contents/MacOS/Godot
 codesign --force --timestamp --options=runtime --entitlements misc/dist/macos/editor.entitlements -s - Godot.app
 
 echo 'PACKAGE ALL'
-cd $gd_dir
+cd $build_dir/godot
 cp godot.gdkey bin/
 ls -la bin/
 rm -rf bin/godot.macos* bin/obj
