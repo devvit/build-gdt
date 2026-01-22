@@ -2,8 +2,8 @@ name: BUILD_MACOS
 
 on:
   push:
-    # paths:
-    #   - '**.js'
+    paths:
+      - '**.js'
   schedule:
     - cron: '0 0 * * mon'
 
