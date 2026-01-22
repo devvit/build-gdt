@@ -49,16 +49,16 @@ for f in $(ls *.zip); do
 done
 
 cd $build_dir
-git clone --depth 1 --recursive https://github.com/godotengine/godot
+git clone -b 4.5.1-stable --depth 1 --recursive https://github.com/godotengine/godot
 cd godot
 openssl rand -hex 32 >godot.gdkey
 export SCRIPT_AES256_ENCRYPTION_KEY=$(cat godot.gdkey)
 echo "version=$(git rev-parse --short HEAD)" >>$GITHUB_ENV
 
-git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones && git apply --directory modules/godot_dragonbones $build_dir/4.x_1.patch
-git clone --depth 1 --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet && git apply --directory modules/qurobullet $build_dir/4.x_2.patch
-git clone --depth 1 --recursive https://github.com/Zylann/godot_voxel modules/voxel
-git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
+# git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones && git apply --directory modules/godot_dragonbones $build_dir/4.x_1.patch
+# git clone --depth 1 --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet && git apply --directory modules/qurobullet $build_dir/4.x_2.patch
+# git clone --depth 1 --recursive https://github.com/Zylann/godot_voxel modules/voxel
+# git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
 
 echo 'BUILD MACOS'
 args="osxcross_sdk=darwin22.4 production=yes use_volk=no vulkan_sdk_path=$build_dir/moltenvk angle_libs=$build_dir/angle accesskit_sdk_path=$build_dir/accesskit/accesskit-c"
