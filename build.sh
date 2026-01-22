@@ -15,7 +15,7 @@ export OSXCROSS_ROOT=$build_dir/osxcross
 export PATH="$build_dir/osxcross/bin:$build_dir/osxcross/target/bin:$PATH"
 export LD_LIBRARY_PATH="$build_dir/osxcross/lib:$LD_LIBRARY_PATH"
 echo '-----------------------'
-ls $build_dir/osxcross/bin
+ls $build_dir/osxcross/target/bin
 
 # macOS needs MoltenVK
 mkdir -p $build_dir/moltenvk
