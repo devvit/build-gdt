@@ -19,12 +19,12 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y libarchive-tools scons
         mkdir -p osxcross
-        docker pull ghcr.io/crazy-max/osxcross
-        docker create --name tmp-osxcross ghcr.io/crazy-max/osxcross sleep infinity
-        docker cp tmp-osxcross:/osxcross/. ./osxcross/
+        docker pull ghcr.io/joseluisq/docker-osxcross:1.0.0-beta.2
+        docker create --name tmp-osxcross ghcr.io/joseluisq/docker-osxcross:1.0.0-beta.2 sleep infinity
+        docker cp tmp-osxcross:/usr/local/osxcross/. ./osxcross/
         docker rm tmp-osxcross
-        docker image rm ghcr.io/crazy-max/osxcross
-        sudo cp ./osxcross/lib/* /usr/lib/x86_64-linux-gnu/
+        docker image rm ghcr.io/joseluisq/docker-osxcross:1.0.0-beta.2
+        sudo cp ./osxcross/lib/. /usr/lib/x86_64-linux-gnu/
         bash build.sh
     - name: "Upload artifact"
       uses: actions/upload-artifact@v4

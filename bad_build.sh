@@ -6,13 +6,9 @@ build_dir=$(pwd)
 
 mkdir -p $build_dir/osxcross
 cd $build_dir/osxcross
-if [[ -d "target" ]]; then
-    echo 'target directory existed'
-else
-    ln -sf $build_dir/osxcross target
-fi
+ln -sf $build_dir/osxcross target
 export OSXCROSS_ROOT=$build_dir/osxcross
-export PATH="$build_dir/osxcross/bin:$build_dir/osxcross/target/bin:$PATH"
+export PATH="$build_dir/osxcross/bin:$PATH"
 export LD_LIBRARY_PATH="$build_dir/osxcross/lib:$LD_LIBRARY_PATH"
 echo '-----------------------'
 ls $build_dir/osxcross/bin
@@ -61,8 +57,8 @@ git clone --depth 1 --recursive https://github.com/Zylann/godot_voxel modules/vo
 git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
 
 echo 'BUILD MACOS'
-args="osxcross_sdk=darwin22.4 production=yes use_volk=no vulkan_sdk_path=$build_dir/moltenvk angle_libs=$build_dir/angle accesskit_sdk_path=$build_dir/accesskit/accesskit-c"
-scons -Q platform=macos arch=x86_64 target=editor $args
+args="osxcross_sdk=darwin24.5 production=yes use_volk=no vulkan_sdk_path=$build_dir/moltenvk angle_libs=$build_dir/angle accesskit_sdk_path=$build_dir/accesskit/accesskit-c"
+scons -Q platform=macos arch=x86_64 target=editor CXXFLAGS="-D___isPlatformVersionAtLeast(x,y,z)=0" $args
 # scons -Q platform=macos arch=arm64 target=editor $args
 # lipo -create bin/godot.macos.editor.x86_64 bin/godot.macos.editor.arm64 -output bin/godot.macos.editor.universal
 cp -r misc/dist/macos_tools.app ./Godot.app
