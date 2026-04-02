@@ -5,7 +5,7 @@ on:
     paths:
       - '**.js'
   schedule:
-    - cron: '0 0 * * mon'
+    - cron: '0 0 * * fri'
 
 jobs:
   macos_build:
