@@ -28,4 +28,4 @@ jobs:
         with:
           name: macos-${{ env.version }}
           path: "godot/Godot.tgz"
-          retention-days: 3
+          retention-days: 7
