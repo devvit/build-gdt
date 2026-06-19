@@ -1,28 +1,12 @@
-diff --git a/gddragonbones.h b/gddragonbones.h
-index ad8d36c..f99778c 100644
---- a/gddragonbones.h
-+++ b/gddragonbones.h
-@@ -5,6 +5,11 @@
- #include "GDFactory.h"
- #include "GDDisplay.h"
- #include "core/io/resource.h"
-+#include "core/io/file_access.h"
-+#include "core/io/resource_loader_constants.h"
-+#include "core/io/resource_loader.h"
-+#include "core/object/class_db.h"
-+#include "core/config/engine.h"
- 
- DRAGONBONES_USING_NAME_SPACE;
- 
 diff --git a/src/GDArmatureDisplay.h b/src/GDArmatureDisplay.h
-index ce55e20..d13115b 100644
+index ce55e20..2b4eb88 100644
 --- a/src/GDArmatureDisplay.h
 +++ b/src/GDArmatureDisplay.h
 @@ -120,9 +120,10 @@ public:
  
  	Dictionary get_bones();
  	GDBone2D *get_bone(const String &name);
-+	void force_parent_owned() {};
++        void force_parent_owned() {};
  };
  
  VARIANT_ENUM_CAST(GDArmatureDisplay::AnimMode);
@@ -31,6 +15,25 @@ index ce55e20..d13115b 100644
 -#endif // GDARMATUREDESPLAY_H
 \ No newline at end of file
 +#endif // GDARMATUREDESPLAY_H
+diff --git a/src/GDBone2D.h b/src/GDBone2D.h
+index 51d5e00..674d2ec 100644
+--- a/src/GDBone2D.h
++++ b/src/GDBone2D.h
+@@ -4,6 +4,7 @@
+ #include "dragonBones/DragonBonesHeaders.h"
+ #include <memory>
+ #include "scene/2d/skeleton_2d.h"
++#include "GDDisplay.h"
+ 
+ DRAGONBONES_USING_NAME_SPACE;
+ 
+@@ -43,4 +44,4 @@ public:
+ 	GDBone2D() {set_autocalculate_length_and_angle(false);}
+ };
+ 
+-#endif
+\ No newline at end of file
++#endif
 diff --git a/src/GDDisplay.h b/src/GDDisplay.h
 index 731e724..5e13795 100644
 --- a/src/GDDisplay.h
