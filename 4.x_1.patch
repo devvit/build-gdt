@@ -32,7 +32,7 @@ index ce55e20..d13115b 100644
 \ No newline at end of file
 +#endif // GDARMATUREDESPLAY_H
 diff --git a/src/GDDisplay.h b/src/GDDisplay.h
-index 731e724..ab9ea09 100644
+index 731e724..84c9c65 100644
 --- a/src/GDDisplay.h
 +++ b/src/GDDisplay.h
 @@ -3,6 +3,7 @@
@@ -43,6 +43,15 @@ index 731e724..ab9ea09 100644
  
  DRAGONBONES_USING_NAME_SPACE;
  
+@@ -49,7 +50,7 @@ private:
+ 
+ public:
+     Ref<Texture2D>    texture;
+-    CanvasItemMaterial* p_canvas_mat;
++    Ref<CanvasItemMaterial> p_canvas_mat;
+ 
+     GDOwnerNode*    p_owner;
+     bool            b_debug;
 @@ -76,4 +77,4 @@ public:
      }
  };
