@@ -32,18 +32,19 @@ index ce55e20..d13115b 100644
 \ No newline at end of file
 +#endif // GDARMATUREDESPLAY_H
 diff --git a/src/GDDisplay.h b/src/GDDisplay.h
-index 731e724..84c9c65 100644
+index 731e724..9773d51 100644
 --- a/src/GDDisplay.h
 +++ b/src/GDDisplay.h
-@@ -3,6 +3,7 @@
+@@ -3,6 +3,8 @@
  
  #include "dragonBones/DragonBonesHeaders.h"
  #include "scene/2d/node_2d.h"
 +#include "scene/resources/canvas_item_material.h"
++#include "servers/rendering/rendering_server.h"
  
  DRAGONBONES_USING_NAME_SPACE;
  
-@@ -49,7 +50,7 @@ private:
+@@ -49,7 +51,7 @@ private:
  
  public:
      Ref<Texture2D>    texture;
@@ -52,29 +53,10 @@ index 731e724..84c9c65 100644
  
      GDOwnerNode*    p_owner;
      bool            b_debug;
-@@ -76,4 +77,4 @@ public:
+@@ -76,4 +78,4 @@ public:
      }
  };
  
 -#endif // GDISPLAY_H
 \ No newline at end of file
 +#endif // GDISPLAY_H
-diff --git a/src/GDMesh.h b/src/GDMesh.h
-index 24fef27..025362b 100644
---- a/src/GDMesh.h
-+++ b/src/GDMesh.h
-@@ -4,6 +4,7 @@
- #include "GDDisplay.h"
- 
- #include "core/templates/vector.h"
-+#include "servers/rendering/rendering_server.h"
- 
- DRAGONBONES_USING_NAME_SPACE;
- 
-@@ -98,4 +99,4 @@ public:
-     }
- };
- 
--#endif // #ifndef GDMESH_H
-\ No newline at end of file
-+#endif // #ifndef GDMESH_H
