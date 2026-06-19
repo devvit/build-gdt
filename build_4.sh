@@ -25,23 +25,23 @@ qjs=""
 
 echo 'BUILD MACOS'
 scons platform=macos arch=x86_64 target=editor $qjs
-scons platform=macos arch=arm64 target=editor $qjs
-lipo -create bin/godot.macos.editor.x86_64 bin/godot.macos.editor.arm64 -output bin/godot.macos.editor.universal
-cp -r misc/dist/macos_tools.app ./Godot.app
-mkdir -p Godot.app/Contents/MacOS
-cp bin/godot.macos.editor.universal Godot.app/Contents/MacOS/Godot
-chmod +x Godot.app/Contents/MacOS/Godot
-codesign --force --timestamp --options=runtime --entitlements misc/dist/macos/editor.entitlements -s - Godot.app
+# scons platform=macos arch=arm64 target=editor $qjs
+# lipo -create bin/godot.macos.editor.x86_64 bin/godot.macos.editor.arm64 -output bin/godot.macos.editor.universal
+# cp -r misc/dist/macos_tools.app ./Godot.app
+# mkdir -p Godot.app/Contents/MacOS
+# cp bin/godot.macos.editor.universal Godot.app/Contents/MacOS/Godot
+# chmod +x Godot.app/Contents/MacOS/Godot
+# codesign --force --timestamp --options=runtime --entitlements misc/dist/macos/editor.entitlements -s - Godot.app
 
 echo 'BUILD WEB'
-scons platform=web dlink_enabled=yes target=template_release $qjs
+# scons platform=web dlink_enabled=yes target=template_release $qjs
 
 echo 'BUILD ANDROID'
-export JAVA_HOME=$JAVA_HOME_17_arm64
-scons platform=android target=template_release arch=arm32 $qjs
-scons platform=android target=template_release arch=arm64 generate_apk=yes $qjs
-cd platform/android/java
-./gradlew generateGodotTemplates
+# export JAVA_HOME=$JAVA_HOME_17_arm64
+# scons platform=android target=template_release arch=arm32 $qjs
+# scons platform=android target=template_release arch=arm64 generate_apk=yes $qjs
+# cd platform/android/java
+# ./gradlew generateGodotTemplates
 
 echo 'PACKAGE ALL'
 cd $gd_dir
