@@ -14,24 +14,24 @@ echo "version=$(git rev-parse --short HEAD)" >>$GITHUB_ENV
 
 sh misc/scripts/install_vulkan_sdk_macos.sh
 git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
-# git clone --depth 1 --recursive https://github.com/godotjs/GodotJS modules/GodotJS
 git clone --depth 1 --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
 git apply --directory modules/qurobullet ../4.x_2.patch
-# git clone --depth 1 --recursive https://github.com/Zylann/godot_voxel modules/voxel
-# git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
+git clone --depth 1 --recursive https://github.com/Zylann/godot_voxel modules/voxel
+git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
 git apply --directory modules/godot_dragonbones ../4.x_1.patch
+# git clone --depth 1 --recursive https://github.com/godotjs/GodotJS modules/GodotJS
 # qjs="use_quickjs_ng=yes"
 qjs=""
 
 echo 'BUILD MACOS'
 scons platform=macos arch=x86_64 target=editor $qjs
-# scons platform=macos arch=arm64 target=editor $qjs
-# lipo -create bin/godot.macos.editor.x86_64 bin/godot.macos.editor.arm64 -output bin/godot.macos.editor.universal
-# cp -r misc/dist/macos_tools.app ./Godot.app
-# mkdir -p Godot.app/Contents/MacOS
-# cp bin/godot.macos.editor.universal Godot.app/Contents/MacOS/Godot
-# chmod +x Godot.app/Contents/MacOS/Godot
-# codesign --force --timestamp --options=runtime --entitlements misc/dist/macos/editor.entitlements -s - Godot.app
+scons platform=macos arch=arm64 target=editor $qjs
+lipo -create bin/godot.macos.editor.x86_64 bin/godot.macos.editor.arm64 -output bin/godot.macos.editor.universal
+cp -r misc/dist/macos_tools.app ./Godot.app
+mkdir -p Godot.app/Contents/MacOS
+cp bin/godot.macos.editor.universal Godot.app/Contents/MacOS/Godot
+chmod +x Godot.app/Contents/MacOS/Godot
+codesign --force --timestamp --options=runtime --entitlements misc/dist/macos/editor.entitlements -s - Godot.app
 
 echo 'BUILD WEB'
 # scons platform=web dlink_enabled=yes target=template_release $qjs
