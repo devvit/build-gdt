@@ -1,12 +1,13 @@
 diff --git a/gddragonbones.h b/gddragonbones.h
-index ad8d36c..31a6f11 100644
+index ad8d36c..9cba9c6 100644
 --- a/gddragonbones.h
 +++ b/gddragonbones.h
-@@ -5,6 +5,7 @@
+@@ -5,6 +5,8 @@
  #include "GDFactory.h"
  #include "GDDisplay.h"
  #include "core/io/resource.h"
 +#include "core/io/file_access.h"
++#include "core/io/resource_loader_constants.h"
  
  DRAGONBONES_USING_NAME_SPACE;
  
