@@ -59,3 +59,22 @@ index 731e724..84c9c65 100644
 -#endif // GDISPLAY_H
 \ No newline at end of file
 +#endif // GDISPLAY_H
+diff --git a/src/GDMesh.h b/src/GDMesh.h
+index 24fef27..025362b 100644
+--- a/src/GDMesh.h
++++ b/src/GDMesh.h
+@@ -4,6 +4,7 @@
+ #include "GDDisplay.h"
+ 
+ #include "core/templates/vector.h"
++#include "servers/rendering/rendering_server.h"
+ 
+ DRAGONBONES_USING_NAME_SPACE;
+ 
+@@ -98,4 +99,4 @@ public:
+     }
+ };
+ 
+-#endif // #ifndef GDMESH_H
+\ No newline at end of file
++#endif // #ifndef GDMESH_H
