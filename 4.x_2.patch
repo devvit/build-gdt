@@ -1,37 +1,26 @@
-diff --git a/bullet.h b/bullet.h
-index c7f150f..dafb35d 100644
---- a/bullet.h
-+++ b/bullet.h
-@@ -7,6 +7,7 @@
- #include "core/object/object.h"
- #include "core/object/ref_counted.h"
- #include "scene/resources/texture.h"
-+#include "servers/rendering/rendering_server.h"
- 
- class Bullet : public Object {
- 	GDCLASS(Bullet, Object);
 diff --git a/bullet_server.h b/bullet_server.h
-index f19ee5d..79fd4bd 100644
+index f19ee5d..4dacff4 100644
 --- a/bullet_server.h
 +++ b/bullet_server.h
-@@ -9,7 +9,7 @@
+@@ -9,7 +9,6 @@
  #include "core/os/os.h"
  #include "scene/2d/node_2d.h"
  #include "scene/resources/world_2d.h"
 -#include "servers/physics_server_2d.h"
-+#include "servers/physics_2d/physics_server_2d.h"
  
  #include <vector>
  
 diff --git a/bullet_type.h b/bullet_type.h
-index 0e6a071..07aa8e4 100644
+index 0e6a071..1d21abb 100644
 --- a/bullet_type.h
 +++ b/bullet_type.h
-@@ -5,6 +5,14 @@
+@@ -5,6 +5,16 @@
  #include "scene/resources/material.h"
  #include "scene/resources/2d/shape_2d.h"
  #include "scene/resources/texture.h"
++#include "servers/physics_2d/physics_server_2d.h"
 +#include "core/object/class_db.h"
++#include "servers/rendering/rendering_server.h"
 +
 +#define _USE_MATH_DEFINES
 +#include <cmath>
