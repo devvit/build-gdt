@@ -1,21 +1,13 @@
 diff --git a/bullet_server.h b/bullet_server.h
-index f19ee5d..b361e47 100644
+index f19ee5d..79fd4bd 100644
 --- a/bullet_server.h
 +++ b/bullet_server.h
-@@ -9,7 +9,15 @@
+@@ -9,7 +9,7 @@
  #include "core/os/os.h"
  #include "scene/2d/node_2d.h"
  #include "scene/resources/world_2d.h"
 -#include "servers/physics_server_2d.h"
 +#include "servers/physics_2d/physics_server_2d.h"
-+#include "scene/resources/canvas_item_material.h"
-+#include "servers/rendering/rendering_server.h"
-+#include "core/io/resource.h"
-+#include "core/io/file_access.h"
-+#include "core/io/resource_loader_constants.h"
-+#include "core/io/resource_loader.h"
-+#include "core/object/class_db.h"
-+#include "core/config/engine.h"
  
  #include <vector>
  
