@@ -1,3 +1,15 @@
+diff --git a/bullet.h b/bullet.h
+index c7f150f..dafb35d 100644
+--- a/bullet.h
++++ b/bullet.h
+@@ -7,6 +7,7 @@
+ #include "core/object/object.h"
+ #include "core/object/ref_counted.h"
+ #include "scene/resources/texture.h"
++#include "servers/rendering/rendering_server.h"
+ 
+ class Bullet : public Object {
+ 	GDCLASS(Bullet, Object);
 diff --git a/bullet_server.h b/bullet_server.h
 index f19ee5d..79fd4bd 100644
 --- a/bullet_server.h
