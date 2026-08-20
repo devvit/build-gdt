@@ -23,7 +23,7 @@ git clone --depth 1 --recursive https://github.com/gd-avif/gd-avif modules/avif
 perl -pi -e 's/#include "core\/extension\/ext_wrappers\.gen\.inc"/#include "core\/extension\/ext_wrappers.gen.h"/' modules/avif/resource_saver_avif.h
 git clone --depth 1 --recursive https://github.com/libriscv/godot-sandbox modules/sandbox
 perl -i -ne 'print unless /gdextension_interface/' modules/sandbox/register_types.cpp
-git clone --depth 1 --recursive https://github.com/godotjs/GodotJS modules/GodotJS
+# git clone --depth 1 --recursive https://github.com/godotjs/GodotJS modules/GodotJS
 # qjs="use_quickjs_ng=yes"
 qjs=""
 
