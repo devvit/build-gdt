@@ -27,7 +27,7 @@ git apply --directory modules/luaAPI ../4.x_3.patch
 # perl -i -ne 'print unless /gdextension_interface/' modules/sandbox/register_types.cpp
 # git clone --depth 1 --recursive https://github.com/godotjs/GodotJS modules/GodotJS
 # qjs="use_quickjs_ng=yes"
-qjs=""
+qjs="luaapi_luaver=jit"
 
 cd $gd_dir
 
