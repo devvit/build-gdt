@@ -23,6 +23,7 @@ git clone --depth 1 --recursive https://github.com/gd-avif/gd-avif modules/avif
 # perl -i -ne 'print unless /ext_wrappers/' modules/avif/resource_saver_avif.h
 cd modules/avif
 scons platform=macos arch=x86_64 target=template_release
+cd $gd_dir
 perl -pi -e 's/#include "core\/extension\/ext_wrappers\.gen\.inc"/#include "core\/extension\/ext_wrappers.gen.h"/' modules/avif/resource_saver_avif.h
 # git clone --depth 1 --recursive https://github.com/libriscv/godot-sandbox modules/sandbox
 # git clone --depth 1 --recursive https://github.com/godotjs/GodotJS modules/GodotJS
