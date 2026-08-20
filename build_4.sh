@@ -20,8 +20,7 @@ git clone --depth 1 --recursive https://github.com/Zylann/godot_voxel modules/vo
 git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
 git apply --directory modules/godot_dragonbones ../4.x_1.patch
 git clone --depth 1 --recursive https://github.com/gd-avif/gd-avif modules/avif
-rm -rf modules/avif/SConstruct modules/avif/godot-cpp
-echo 'env["CPPDEFINES"] = [d for d in env["CPPDEFINES"] if d != "GDEXTENSION" and (not isinstance(d, (tuple, list)) or d[0] != "GDEXTENSION")]' >>modules/avif/SCsub
+perl -i -ne 'print unless /GDEXTENSION/' modules/avif/SConstruct
 # git clone --depth 1 --recursive https://github.com/libriscv/godot-sandbox modules/sandbox
 # git clone --depth 1 --recursive https://github.com/godotjs/GodotJS modules/GodotJS
 # qjs="use_quickjs_ng=yes"
