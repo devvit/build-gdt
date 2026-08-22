@@ -27,7 +27,7 @@ git clone --depth 1 --recursive https://github.com/libriscv/godot-sandbox module
 perl -i -ne 'print unless /gdextension_interface/' modules/sandbox/register_types.cpp
 # git clone --depth 1 --recursive https://github.com/godotjs/GodotJS modules/GodotJS
 # qjs="use_quickjs_ng=yes"
-build_args="luaapi_luaver=jit $qjs"
+build_args="$qjs"
 
 echo 'BUILD MACOS'
 scons platform=macos arch=x86_64 target=editor $build_args
