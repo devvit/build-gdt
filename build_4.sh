@@ -14,7 +14,7 @@ echo "version=$(git rev-parse --short HEAD)" >>$GITHUB_ENV
 
 sh misc/scripts/install_vulkan_sdk_macos.sh
 
-git clone --depth 1 --recursive https://github.com/PointDevice/godot_luaAPI modules/luaAPI
+git clone --depth 1 --recursive https://github.com/HKunogi/godot_luaAPI modules/luaAPI
 # git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
 # git apply --directory modules/godot_dragonbones ../4.x_1.patch
 # git clone --depth 1 --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
