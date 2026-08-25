@@ -22,6 +22,7 @@ build_extension() {
     cd $(basename $1)
     rm -rf godot-cpp
     git clone --depth 1 -b 10.0.0-rc1 https://github.com/godotengine/godot-cpp
+    perl -pi -e 's/SharedLibrary/StaticLibrary/g' SConstruct
     scons target=editor arch=x86_64 api_version=4.6
     libpath=$(find . -name lib*editor* -type f | grep -v libgodot-cpp | head -n1)
     libname=$(basename $libpath)
