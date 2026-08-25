@@ -3,6 +3,8 @@
 brew update
 brew install scons yasm
 
+root_dir=$(pwd)
+
 git clone --depth 1 -b 4.7 --recursive https://github.com/godotengine/godot
 cd godot
 gd_dir=$(pwd)
@@ -14,12 +16,32 @@ echo "version=$(git rev-parse --short HEAD)" >>$GITHUB_ENV
 
 sh misc/scripts/install_vulkan_sdk_macos.sh
 
-git clone --depth 1 --recursive --shallow-submodules https://github.com/Daylily-Zeleen/Godot-DragonBones
-cd Godot-DragonBones
-rm -rf godot-cpp
-git clone --depth 1 -b 10.0.0-rc1 https://github.com/godotengine/godot-cpp
-scons target=editor arch=x86_64 api_version=4.6
+build_extension() {
+    git clone --depth 1 --recursive --shallow-submodules $1
+    cd $(basename $1)
+    rm -rf godot-cpp
+    git clone --depth 1 -b 10.0.0-rc1 https://github.com/godotengine/godot-cpp
+    scons target=editor arch=x86_64 api_version=4.6
+    libname=$(basename $(find . -name lib*editor* -type f | grep -v libgodot-cpp | head -n1))
+    modname=$(echo $libname | perl -ne 's/-/_/g; /lib(.*?)\./ && print $1')
+    entryfunc=$(git grep entry_symbol | perl -ne '/"(.*)"/ && print $1')
 
+    cd $gd_dir/modules
+    cp -r $root_dir/my_module $modname
+
+    cd $modname
+    find . -type f | while read f; do
+        perl -pi -e "s/MY_MODULE/\U${modname}/g" $f
+        perl -pi -e "s/my_module/${modname}/g" $f
+        perl -pi -e "s/sandbox/${modname}/g" $f
+        perl -pi -e "s/libgodot_riscv/lib${modname}/g" $f
+        perl -pi -e "s/my_addon_library_init/${entryfunc}/g" $f
+    done
+    perl -i -ne 'print unless /gdextension_interface/' register_types.cpp
+    perl -i -pe 'print "#include \"core/config/engine.h\"\n" if $. == 1' register_types.cpp
+
+    mkdir -p bin/addons/my_library/bin/libmy_library.macos.template_release.x86_64.framework
+}
 
 # git clone --depth 1 --recursive https://github.com/HKunogi/godot_luaAPI modules/luaAPI
 # git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
