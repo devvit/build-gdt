@@ -17,12 +17,14 @@ echo "version=$(git rev-parse --short HEAD)" >>$GITHUB_ENV
 sh misc/scripts/install_vulkan_sdk_macos.sh
 
 build_extension() {
+    cd $root_dir
     git clone --depth 1 --recursive --shallow-submodules $1
     cd $(basename $1)
     rm -rf godot-cpp
     git clone --depth 1 -b 10.0.0-rc1 https://github.com/godotengine/godot-cpp
     scons target=editor arch=x86_64 api_version=4.6
-    libname=$(basename $(find . -name lib*editor* -type f | grep -v libgodot-cpp | head -n1))
+    libpath=$(find . -name lib*editor* -type f | grep -v libgodot-cpp | head -n1)
+    libname=$(basename $libpath)
     modname=$(echo $libname | perl -ne 's/-/_/g; /lib(.*?)\./ && print $1')
     entryfunc=$(git grep entry_symbol | perl -ne '/"(.*)"/ && print $1')
 
@@ -41,7 +43,14 @@ build_extension() {
     perl -i -pe 'print "#include \"core/config/engine.h\"\n" if $. == 1' register_types.cpp
 
     mkdir -p bin/addons/my_library/bin/libmy_library.macos.template_release.x86_64.framework
+
+    cp $root_dir/$(basename $1)/$libpath bin/addons/my_library/bin/libmy_library.macos.template_release.x86_64.framework/lib${modname}.macos.template_release.x86_64.a
+    cp $root_dir/$(basename $1)/godot-cpp/bin/libgodot-cpp.macos.editor.x86_64.a ext/godot-cpp/bin/libgodot-cpp.macos.template_release.x86_64.a
 }
+
+build_extension 'https://github.com/Daylily-Zeleen/Godot-DragonBones'
+
+cd $gd_dir
 
 # git clone --depth 1 --recursive https://github.com/HKunogi/godot_luaAPI modules/luaAPI
 # git clone --depth 1 --recursive https://github.com/mauville-technologies/godot_dragonbones modules/godot_dragonbones
