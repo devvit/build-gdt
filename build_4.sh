@@ -49,6 +49,7 @@ build_extension() {
     cp $root_dir/$(basename $1)/godot-cpp/bin/libgodot-cpp.macos.editor.x86_64.a ext/godot-cpp/bin/libgodot-cpp.macos.template_release.x86_64.a
 }
 
+build_extension 'https://github.com/2shady4u/godot-sqlite'
 build_extension 'https://github.com/Daylily-Zeleen/Godot-DragonBones'
 
 cd $gd_dir
