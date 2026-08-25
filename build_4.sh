@@ -59,10 +59,10 @@ cd $gd_dir
 # git apply --directory modules/godot_dragonbones ../4.x_1.patch
 # git clone --depth 1 --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
 # git apply --directory modules/qurobullet ../4.x_2.patch
-# git clone --depth 1 --recursive https://github.com/Zylann/godot_voxel modules/voxel
-# git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
-# git clone --depth 1 --recursive https://github.com/gd-avif/gd-avif modules/avif
-# perl -pi -e 's/#include "core\/extension\/ext_wrappers\.gen\.inc"/#include "core\/extension\/ext_wrappers.gen.h"/' modules/avif/resource_saver_avif.h
+git clone --depth 1 --recursive https://github.com/Zylann/godot_voxel modules/voxel
+git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
+git clone --depth 1 --recursive https://github.com/gd-avif/gd-avif modules/avif
+perl -pi -e 's/#include "core\/extension\/ext_wrappers\.gen\.inc"/#include "core\/extension\/ext_wrappers.gen.h"/' modules/avif/resource_saver_avif.h
 # git clone --depth 1 --recursive https://github.com/libriscv/godot-sandbox modules/sandbox
 # perl -i -ne 'print unless /gdextension_interface/' modules/sandbox/register_types.cpp
 # git clone --depth 1 --recursive https://github.com/godotjs/GodotJS modules/GodotJS
