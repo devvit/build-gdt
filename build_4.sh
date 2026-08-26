@@ -47,7 +47,7 @@ build_extension() {
     libpath=$(find . -name lib*editor* -type f | grep -v libgodot-cpp | head -n1)
     libname=$(basename $libpath)
     modname=$(echo $libname | perl -ne 's/-/_/g; /lib(.*?)\./ && print $1')
-    entryfunc=$(git grep entry_symbol | perl -ne '/"(.*)"/ && print $1')
+    entryfunc=$(git grep entry_symbol | grep gdextension | perl -ne '/"(.*)"/ && print $1')
 
     cd $gd_dir/modules
     cp -r $root_dir/my_module $modname
