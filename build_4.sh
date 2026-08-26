@@ -25,6 +25,7 @@ build_extension() {
     repo_dir=$(basename $1)
 
     cd $repo_dir
+
     rm -rf godot-cpp
     git clone --depth 1 https://github.com/godotengine/godot-cpp
 
@@ -37,6 +38,7 @@ build_extension() {
     fi
 
     scons target=editor arch=x86_64 api_version=$gd_ver
+
     libpath=$(find . -name lib*editor* -type f | grep -v libgodot-cpp | head -n1)
     libname=$(basename $libpath)
     modname=$(echo $libname | perl -ne 's/-/_/g; /lib(.*?)\./ && print $1')
