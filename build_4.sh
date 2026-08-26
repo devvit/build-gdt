@@ -34,6 +34,10 @@ build_extension() {
         perl -pi -e 's/SharedLibrary/StaticLibrary/g' $f
     done
 
+    if [[ -f tools/config.json ]]; then
+        perl -i -pe 's/"godotProjectFolder":\s*"[^"]*"/"godotProjectFolder": ""/' tools/config.json
+    fi
+
     if [[ -f "$root_dir/$repo_dir".patch ]]; then
         git apply "$root_dir/$repo_dir".patch
     fi
