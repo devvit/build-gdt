@@ -65,6 +65,12 @@ build_extension() {
 
     mkdir -p bin/addons/my_library/bin/libmy_library.macos.template_release.x86_64.framework
 
+    echo '-----------------------'
+    cat register_types.h
+    echo '-----------------------'
+    cat register_types.cpp
+    echo '-----------------------'
+
     cp $root_dir/$repo_dir/$libpath bin/addons/my_library/bin/libmy_library.macos.template_release.x86_64.framework/lib${modname}.macos.template_release.x86_64.a
     cp $root_dir/$repo_dir/godot-cpp/bin/libgodot-cpp.macos.editor.x86_64.a ext/godot-cpp/bin/libgodot-cpp.macos.template_release.x86_64.a
 }
