@@ -72,7 +72,7 @@ build_extension() {
     echo '_______________________'
 
     cp $root_dir/$repo_dir/$libpath bin/addons/my_library/bin/libmy_library.macos.template_release.x86_64.framework/lib${modname}.macos.template_release.x86_64.a
-    cp $root_dir/$repo_dir/godot-cpp/bin/libgodot-cpp.macos.editor.x86_64.a ext/godot-cpp/bin/libgodot-cpp.macos.template_release.x86_64.a
+    cp $root_dir/$repo_dir/godot-cpp/bin/libgodot-cpp*.a ext/godot-cpp/bin/libgodot-cpp.macos.template_release.x86_64.a
 }
 
 # build_extension 'https://github.com/2shady4u/godot-sqlite'
