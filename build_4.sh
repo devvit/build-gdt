@@ -3,9 +3,11 @@
 brew update
 brew install scons yasm
 
+gd_ver='4.7'
+
 root_dir=$(pwd)
 
-git clone --depth 1 -b 4.7 --recursive https://github.com/godotengine/godot
+git clone --depth 1 -b $gd_ver --recursive https://github.com/godotengine/godot
 cd godot
 gd_dir=$(pwd)
 
@@ -23,7 +25,8 @@ build_extension() {
     rm -rf godot-cpp
     git clone --depth 1 -b 10.0.0-rc1 https://github.com/godotengine/godot-cpp
     perl -pi -e 's/SharedLibrary/StaticLibrary/g' SConstruct
-    scons target=editor arch=x86_64 api_version=4.6
+    perl -pi -e 's/SharedLibrary/StaticLibrary/g' tools/apple_helpers.py
+    scons target=editor arch=x86_64 api_version=$gd_ver
     libpath=$(find . -name lib*editor* -type f | grep -v libgodot-cpp | head -n1)
     libname=$(basename $libpath)
     modname=$(echo $libname | perl -ne 's/-/_/g; /lib(.*?)\./ && print $1')
