@@ -65,18 +65,12 @@ build_extension() {
 
     mkdir -p bin/addons/my_library/bin/libmy_library.macos.template_release.x86_64.framework
 
-    echo '-----------------------'
-    cat register_types.h
-    echo '+++++++++++++++++++++++'
-    cat register_types.cpp
-    echo '_______________________'
-
     cp $root_dir/$repo_dir/$libpath bin/addons/my_library/bin/libmy_library.macos.template_release.x86_64.framework/lib${modname}.macos.template_release.x86_64.a
     cp $root_dir/$repo_dir/godot-cpp/bin/libgodot-cpp*.a ext/godot-cpp/bin/libgodot-cpp.macos.template_release.x86_64.a
 }
 
-# build_extension 'https://github.com/2shady4u/godot-sqlite'
-# build_extension 'https://github.com/Daylily-Zeleen/Godot-DragonBones'
+build_extension 'https://github.com/2shady4u/godot-sqlite'
+build_extension 'https://github.com/Daylily-Zeleen/Godot-DragonBones'
 build_extension 'https://github.com/nikoladevelops/godot-blast-bullets-2d'
 
 cd $gd_dir
@@ -86,10 +80,10 @@ cd $gd_dir
 # git apply --directory modules/godot_dragonbones ../4.x_1.patch
 # git clone --depth 1 --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
 # git apply --directory modules/qurobullet ../4.x_2.patch
-# git clone --depth 1 --recursive https://github.com/Zylann/godot_voxel modules/voxel
-# git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
-# git clone --depth 1 --recursive https://github.com/gd-avif/gd-avif modules/avif
-# perl -pi -e 's/#include "core\/extension\/ext_wrappers\.gen\.inc"/#include "core\/extension\/ext_wrappers.gen.h"/' modules/avif/resource_saver_avif.h
+git clone --depth 1 --recursive https://github.com/Zylann/godot_voxel modules/voxel
+git clone --depth 1 --recursive https://github.com/limbonaut/limboai modules/limboai
+git clone --depth 1 --recursive https://github.com/gd-avif/gd-avif modules/avif
+perl -pi -e 's/#include "core\/extension\/ext_wrappers\.gen\.inc"/#include "core\/extension\/ext_wrappers.gen.h"/' modules/avif/resource_saver_avif.h
 # git clone --depth 1 --recursive https://github.com/libriscv/godot-sandbox modules/sandbox
 # perl -i -ne 'print unless /gdextension_interface/' modules/sandbox/register_types.cpp
 # git clone --depth 1 --recursive https://github.com/godotjs/GodotJS modules/GodotJS
