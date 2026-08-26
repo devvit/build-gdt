@@ -27,7 +27,7 @@ build_extension() {
     cd $repo_dir
 
     rm -rf godot-cpp
-    git clone --depth 1 https://github.com/godotengine/godot-cpp
+    git clone --depth 1 -b 10.0.0-rc2 https://github.com/godotengine/godot-cpp
     cp $root_dir/vmap.hpp godot-cpp/include/godot_cpp/templates/
 
     git grep -l SharedLibrary | while read f; do
