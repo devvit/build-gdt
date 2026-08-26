@@ -1,0 +1,50 @@
+diff --git a/src/editor/dragon_bones_editor_plugin.cpp b/src/editor/dragon_bones_editor_plugin.cpp
+index e9caf9c..8ff8896 100644
+--- a/src/editor/dragon_bones_editor_plugin.cpp
++++ b/src/editor/dragon_bones_editor_plugin.cpp
+@@ -279,11 +279,15 @@ void DragonBonesEditorPlugin::_reimport_moved_factory_files() {
+ 			String key = new_path;
+ 		}
+ 
+-		DragonBonesFactory *factory_ptr{ nullptr };
++		Ref<DragonBonesFactory> factory_ref;
++
++		DragonBonesFactory *factory_ptr = nullptr;
++
+ 		if (it != all_imported_factories.end()) {
+ 			factory_ptr = it->value;
+ 		} else {
+-			factory_ptr = memnew(DragonBonesFactory);
++			factory_ref.instantiate();
++			factory_ptr = factory_ref.ptr();
+ 		}
+ 
+ 		auto factory = import_plugin->try_import(ske, factory_ptr);
+@@ -329,4 +333,4 @@ void DragonBonesEditorPlugin::_exit_tree() {
+ 
+ 	EditorInterface::get_singleton()->get_resource_filesystem()->disconnect("filesystem_changed", callable_mp(this, &DragonBonesEditorPlugin::_on_filesystem_changed));
+ 	EditorInterface::get_singleton()->get_file_system_dock()->disconnect("files_moved", callable_mp(this, &DragonBonesEditorPlugin::_on_file_system_dock_files_moved));
+-}
+\ No newline at end of file
++}
+diff --git a/src/godot_dragon_bones.h b/src/godot_dragon_bones.h
+index ea0d0ca..e0ea7fc 100644
+--- a/src/godot_dragon_bones.h
++++ b/src/godot_dragon_bones.h
+@@ -30,6 +30,7 @@
+ 
+ #pragma once
+ 
++#include <godot_cpp/classes/ref.hpp>
+ #include <godot_cpp/variant/string.hpp>
+ #include <string>
+ 
+@@ -44,7 +45,7 @@
+ #define DRAGONBONES_NEW(T) memnew(T)
+ #define DRAGONBONES_DELETE(ptr) godot::memdelete(ptr)
+ 
+-#define DRAGONBONES_NEW_ARR(T, size) godot::memnew_arr(T, size)
++#define DRAGONBONES_NEW_ARR(T, size) memnew_arr(T, size)
+ #define DRAGONBONES_DELETE_ARR(ptr) godot::memdelete_arr(ptr)
+ 
+ ///////////////////////////////////////////////////////////////////////////////

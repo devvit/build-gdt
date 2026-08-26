@@ -20,12 +20,22 @@ sh misc/scripts/install_vulkan_sdk_macos.sh
 
 build_extension() {
     cd $root_dir
+
     git clone --depth 1 --recursive --shallow-submodules $1
-    cd $(basename $1)
+    repo_dir=$(basename $1)
+
+    cd $repo_dir
     rm -rf godot-cpp
-    git clone --depth 1 -b 10.0.0-rc1 https://github.com/godotengine/godot-cpp
-    perl -pi -e 's/SharedLibrary/StaticLibrary/g' SConstruct
-    perl -pi -e 's/SharedLibrary/StaticLibrary/g' tools/apple_helpers.py
+    git clone --depth 1 https://github.com/godotengine/godot-cpp
+
+    git grep -l SharedLibrary | while read f; do
+        perl -pi -e 's/SharedLibrary/StaticLibrary/g' $f
+    done
+
+    if [[ -f "$root_dir/$repo_dir".patch ]]; then
+        git apply "$root_dir/$repo_dir".patch
+    fi
+
     scons target=editor arch=x86_64 api_version=$gd_ver
     libpath=$(find . -name lib*editor* -type f | grep -v libgodot-cpp | head -n1)
     libname=$(basename $libpath)
@@ -48,12 +58,13 @@ build_extension() {
 
     mkdir -p bin/addons/my_library/bin/libmy_library.macos.template_release.x86_64.framework
 
-    cp $root_dir/$(basename $1)/$libpath bin/addons/my_library/bin/libmy_library.macos.template_release.x86_64.framework/lib${modname}.macos.template_release.x86_64.a
-    cp $root_dir/$(basename $1)/godot-cpp/bin/libgodot-cpp.macos.editor.x86_64.a ext/godot-cpp/bin/libgodot-cpp.macos.template_release.x86_64.a
+    cp $root_dir/$repo_dir/$libpath bin/addons/my_library/bin/libmy_library.macos.template_release.x86_64.framework/lib${modname}.macos.template_release.x86_64.a
+    cp $root_dir/$repo_dir/godot-cpp/bin/libgodot-cpp.macos.editor.x86_64.a ext/godot-cpp/bin/libgodot-cpp.macos.template_release.x86_64.a
 }
 
 build_extension 'https://github.com/2shady4u/godot-sqlite'
 build_extension 'https://github.com/Daylily-Zeleen/Godot-DragonBones'
+build_extension 'https://github.com/nikoladevelops/godot-blast-bullets-2d'
 
 cd $gd_dir
 
