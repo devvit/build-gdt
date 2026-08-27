@@ -21,6 +21,6 @@ jobs:
       - name: "Upload artifact"
         uses: actions/upload-artifact@v4
         with:
-          name: macos-${{ env.version }}
+          name: macos-${{ env.version }}-v3
           path: "godot/Godot.tgz"
           retention-days: 30
