@@ -20,6 +20,7 @@ mv godot_dragonbones* modules/godot_dragonbones
 # git apply --directory modules/ECMAScript ../3.x_2.patch
 git clone --depth 1 -b godot-3.x --recursive https://github.com/quinnvoker/qurobullet modules/qurobullet
 git clone --depth 1 -b 3.2 --recursive https://github.com/godot-extended-libraries/godot-sqlite modules/sqlite
+git clone --depth 1 -b v1.2 --recursive https://github.com/WeaselGames/godot_luaAPI modules/lua
 perl -pi -e 's/-fno-rtti//g' platform/android/detect.py
 perl -pi -e 's/-fno-rtti//g' platform/javascript/detect.py
 git apply --directory modules/godot_dragonbones ../3.x_1.patch
