@@ -39,7 +39,8 @@ build_extension() {
     fi
 
     if [[ -f "$root_dir/$repo_dir".patch ]]; then
-        git apply "$root_dir/$repo_dir".patch
+        # git apply "$root_dir/$repo_dir".patch
+        echo "patch"
     fi
 
     scons target=editor arch=x86_64 api_version=$gd_ver
