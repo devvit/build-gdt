@@ -28,7 +28,6 @@ build_extension() {
 
     rm -rf godot-cpp
     git clone --depth 1 -b 10.0.0-stable https://github.com/godotengine/godot-cpp
-    cp $root_dir/vmap.hpp godot-cpp/include/godot_cpp/templates/
 
     git grep -l SharedLibrary | while read f; do
         perl -pi -e 's/SharedLibrary/StaticLibrary/g' $f
